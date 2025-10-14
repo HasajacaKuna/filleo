@@ -8,7 +8,6 @@ export default function ShopComingSoon() {
     <main className="bg-brand-light text-brand-dark">
       <section className="container py-24 md:py-32">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs uppercase tracking-wider text-brand-dark/50">Sklep</p>
           <h1 className="mt-3 text-4xl md:text-6xl font-extrabold leading-tight uppercase">
             Sklep w przygotowaniu
           </h1>

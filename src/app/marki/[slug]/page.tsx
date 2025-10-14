@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { brands } from '@/lib/brands';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 type RouteParams = { slug: string };
 
@@ -15,7 +17,8 @@ export async function generateMetadata(
   const brand = brands.find((b) => b.slug === slug);
   const title = brand ? `${brand.name} — Filleo` : 'Marka — Filleo';
   const description =
-    brand?.description ?? 'Marka z portfolio Filleo — więcej informacji wkrótce.';
+    brand?.description ??
+    (brand?.tagline ? brand.tagline : 'Marka z portfolio Filleo — więcej informacji wkrótce.');
   return { title, description, openGraph: { title, description } };
 }
 
@@ -25,6 +28,12 @@ export default async function BrandPage(
   const { slug } = await params;
   const brand = brands.find((b) => b.slug === slug);
   if (!brand) return notFound();
+
+  // Fallback dla galerii: jeśli brak brand.images, pokaż 2 placeholdery
+  const gallery =
+    brand.images && brand.images.length > 0
+      ? brand.images
+      : ['/images/photo.jpg', '/images/filleo2.png']; // <- upewnij się, że te pliki masz w /public/images/
 
   return (
     <main className="bg-brand-light text-brand-dark">
@@ -55,7 +64,7 @@ export default async function BrandPage(
             </div>
           </div>
 
-          {/* Opis */}
+          {/* Opis + body */}
           <div className="md:col-span-8">
             <h1 className="text-2xl md:text-4xl font-semibold uppercase tracking-wide">
               {brand.name}
@@ -65,13 +74,19 @@ export default async function BrandPage(
               <p className="mt-2 text-brand-red font-semibold">{brand.tagline}</p>
             ) : null}
 
-            <div className="mt-5 space-y-4 leading-relaxed text-brand-dark/90">
-              <p>
-                {brand.description ??
-                  'Opis tej marki pojawi się wkrótce. Zapraszamy niebawem po więcej informacji.'}
-              </p>
-            </div>
+            {/* krótki opis (jeśli masz) */}
+            {brand.description ? (
+              <p className="mt-5 leading-relaxed text-brand-dark/90">{brand.description}</p>
+            ) : null}
 
+            {/* dłuższy opis w Markdown */}
+            {brand.body ? (
+              <div className="prose prose-neutral max-w-none mt-6">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{brand.body}</ReactMarkdown>
+              </div>
+            ) : null}
+
+            {/* CTA do strony marki */}
             {brand.url ? (
               <div className="mt-6">
                 <a
@@ -87,19 +102,17 @@ export default async function BrandPage(
           </div>
         </div>
 
-        {/* Galeria opcjonalnie */}
-        {brand.images?.length ? (
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {brand.images.map((src, i) => (
-              <div
-                key={`${brand.slug}-img-${i}`}
-                className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm"
-              >
-                <Image src={src} alt={`${brand.name} ${i + 1}`} fill className="object-cover" />
-              </div>
-            ))}
-          </div>
-        ) : null}
+        {/* Galeria na dole (2 ujęcia) */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {gallery.slice(0, 2).map((src, i) => (
+            <div
+              key={`${brand.slug}-img-${i}`}
+              className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm"
+            >
+              <Image src={src} alt={`${brand.name} — zdjęcie ${i + 1}`} fill className="object-cover" />
+            </div>
+          ))}
+        </div>
       </section>
     </main>
   );

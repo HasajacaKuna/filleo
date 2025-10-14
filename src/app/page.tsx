@@ -163,7 +163,7 @@ export default function HomePage() {
     <h4 className="text-2xl md:text-3xl font-semibold uppercase tracking-wide">
       Z życia naszych marek
     </h4>
-    <Link href="/galeria" className="text-sm font-semibold uppercase tracking-wide text-brand-red hover:underline">
+    <Link href="/marki" className="text-sm font-semibold uppercase tracking-wide text-brand-red hover:underline">
       Zobacz więcej
     </Link>
   </div>

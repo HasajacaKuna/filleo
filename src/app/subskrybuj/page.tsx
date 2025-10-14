@@ -130,7 +130,6 @@ export default function SubscribePage() {
     <main className="bg-brand-light text-brand-dark">
       <section className="container py-16 md:py-24">
         {/* Nagłówek */}
-        <p className="text-xs uppercase tracking-wider text-brand-dark/50">Strona główna / Subskrybuj</p>
         <h1 className="mt-4 text-5xl md:text-7xl font-extrabold leading-[0.95] uppercase">
           Zostań <br className="hidden md:block" />
           przyjacielem <br className="hidden md:block" />
