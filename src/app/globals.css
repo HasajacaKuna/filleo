@@ -11,3 +11,16 @@
   .scrollbar-hide::-webkit-scrollbar { display: none; }         /* Chrome/Safari/Opera */
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; } /* IE/Edge/Firefox */
 }
+
+/* globals.css */
+.link-underline {
+  @apply relative transition-colors;
+}
+.link-underline::after {
+  content: "";
+  @apply absolute left-0 -bottom-[6px] h-[2px] w-0 bg-brand-dark/80 transition-all duration-300;
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  @apply w-full;
+}

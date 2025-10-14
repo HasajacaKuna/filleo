@@ -1,275 +1,245 @@
+// src/app/page.tsx
 'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMemo, useState, useEffect, useCallback } from 'react'
-import Hero from './components/Hero'
-import Section from './components/Section'
-import GenderTiles from './components/GenderTiles'
-import LifetimeWarranty from './components/LifetimeWarranty'
-import WhatsAppContact from './components/WhatsAppContact'
-import { categories } from '@/data/categories'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-
-// === Typy (TS) ===
-export type Product = {
-  _id: string
-  slug?: string
-  title: string
-  price: number | string
-  image?: string
-}
-
-type Category = {
-  products: Product[]
-  // w razie potrzeby dodaj: name?: string; slug?: string; etc.
-}
-
-// Duży kafelek: zdjęcie + NAZWA + CENA
-function BigTileCard({ product }: { product: Product }) {
-  const pricePLN = useMemo(() => {
-    const n = typeof product.price === 'number' ? product.price : Number(product.price ?? 0)
-    const safe = Number.isFinite(n) ? n : 0
-    return new Intl.NumberFormat('pl-PL', {
-      style: 'currency',
-      currency: 'PLN',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(safe)
-  }, [product.price])
-
-  const title = product.title
-
-  return (
-    <Link href={`/produkt/${product.slug || product._id}`} className="group block">
-      <div className="overflow-hidden rounded-3xl bg-gray-100 shadow-sm dark:bg-gray-800">
-        {product.image ? (
-          <div className="relative aspect-[3/4] md:aspect-[4/5]">
-            <Image
-              src={product.image}
-              alt={title}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-              className="object-cover transition duration-300 group-hover:scale-[1.02]"
-              loading="lazy"
-            />
-          </div>
-        ) : (
-          <div className="aspect-[3/4] md:aspect-[4/5] flex items-center justify-center text-sm text-gray-500">
-            Brak zdjęcia
-          </div>
-        )}
-      </div>
-      <div className="mt-3 text-center">
-        <div className="text-sm font-semibold md:text-base">{title}</div>
-        <div className="mt-1 text-sm text-gray-700 dark:text-gray-300">{pricePLN}</div>
-      </div>
-    </Link>
-  )
-}
-
-// Karuzela: 4 kafelki widoczne (RWD 1/2/3/4), do 12 elementów, bez białych fade'ów po bokach
-function ProductCarousel({
-  title = 'Wybierz coś dla siebie',
-  products = [] as Product[],
-}: {
-  title?: string
-  products?: Product[]
-}) {
-  const MAX_ITEMS = 12
-  const items = products.slice(0, MAX_ITEMS)
-
-  const [perView, setPerView] = useState<number>(4)
-  useEffect(() => {
-    const calc = () => {
-      const w = window.innerWidth
-      if (w < 640) setPerView(1)
-      else if (w < 1024) setPerView(2)
-      else if (w < 1280) setPerView(3)
-      else setPerView(4)
-    }
-    calc()
-    window.addEventListener('resize', calc)
-    return () => window.removeEventListener('resize', calc)
-  }, [])
-
-  const pages = useMemo(() => {
-    const out: Product[][] = []
-    if (items.length === 0 || perView <= 0) return out
-    for (let i = 0; i < items.length; i += perView) out.push(items.slice(i, i + perView))
-    return out
-  }, [items, perView])
-
-  const [page, setPage] = useState(0)
-  useEffect(() => {
-    setPage((p) => Math.min(p, Math.max(0, pages.length - 1)))
-  }, [pages.length])
-
-  const prev = useCallback(() => setPage((p) => Math.max(0, p - 1)), [])
-  const next = useCallback(() => setPage((p) => Math.min(pages.length - 1, p + 1)), [pages.length])
-
-  const denom = Math.max(1, pages.length)
-
-  return (
-    <Section id="produkty" title="">
-      {/* Wycentrowany nagłówek sekcji */}
-      <div className="mb-10 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">{title}</h2>
-        <div className="mx-auto mt-3 h-[2px] w-16 bg-gray-300" />
-        <div className="mt-3 text-xs uppercase tracking-[0.28em] text-gray-500">
-          RĘCZNIE ROBIONE PASKI
-        </div>
-      </div>
-
-      {items.length ? (
-        <div className="relative">
-          {/* Tor slajdów */}
-          <div className="overflow-hidden rounded-3xl">
-            <div
-              className="flex transition-transform duration-500"
-              style={{ width: `${pages.length * 100}%`, transform: `translateX(-${page * (100 / denom)}%)` }}
-            >
-              {pages.map((group, i) => (
-                <div key={i} className="shrink-0" style={{ width: `${100 / denom}%` }}>
-                  <div className="grid gap-8" style={{ gridTemplateColumns: `repeat(${perView}, minmax(0, 1fr))` }}>
-                    {group.map((p) => (
-                      <BigTileCard key={p._id} product={p} />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {pages.length > 1 && (
-            <>
-              <button
-                onClick={prev}
-                disabled={page === 0}
-                aria-label="Poprzednie"
-                className="absolute left-3 top-1/2 z-50 -translate-y-1/2 rounded-lg shadow-md p-2 sm:p-3 text-white
-                           hover:bg-black/30
-                           transition-colors duration-200 cursor-pointer disabled:opacity-40"
-              >
-                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-
-              <button
-                onClick={next}
-                disabled={page >= pages.length - 1}
-                aria-label="Następne"
-                className="absolute right-3 top-1/2 z-50 -translate-y-1/2 rounded-lg shadow-md p-2 sm:p-3 text-white
-                           hover:bg-black/30 
-                           transition-colors duration-200 cursor-pointer disabled:opacity-40"
-              >
-                <ChevronRight className="w-4 h-4 sm:w-8 sm:h-8" />
-              </button>
-            </>
-          )}
-        </div>
-      ) : (
-        <div className="mx-auto max-w-md rounded-2xl border p-6 text-center dark:border-gray-800">
-          <h3 className="text-lg font-semibold">Brak produktów</h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            Dodaj paski, aby wyświetlić je na stronie głównej.
-          </p>
-        </div>
-      )}
-
-      <div className="mt-10 flex justify-center">
-        <Link
-          href="/sklep"
-          className="relative inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-semibold text-white shadow-lg ring-1 ring-black/10 bg-gradient-to-r from-black to-neutral-800 hover:brightness-110 active:translate-y-px"
-        >
-          Zobacz więcej <span aria-hidden>→</span>
-        </Link>
-      </div>
-    </Section>
-  )
-}
-
-// ————— Nowa sekcja: opis + 2 zdjęcia + przycisk —————
-function WorkshopSection() {
-  return (
-    <section className="py-16 md:py-20">
-      <div className="container">
-        <div className="grid items-center gap-10 md:grid-cols-2">
-          {/* Tekst */}
-          <div>
-            <h2 className="text-2xl font-bold md:text-3xl">Nasza pracownia</h2>
-            <p className="mt-6 text-gray-700 dark:text-gray-300">
-              W Craft Symphony każdy pasek powstaje <span className="font-semibold">ręcznie</span> – od pierwszego cięcia, przez barwienie i
-              wyoblone krawędzie, po woskowanie i polerowanie. Używamy wyłącznie skóry wysokiej jakości i zwracamy uwagę na detale,
-              których nie widać na pierwszy rzut oka – właśnie one decydują o trwałości i charakterze produktu.
-            </p>
-            <p className="mt-4 text-gray-700 dark:text-gray-300">
-              To krótkie serie i indywidualne wykończenia: dobierzesz kolor, szerokość, klamrę i długość. Rzemiosło zamiast masówki –
-              tworzone z dokładnością i starannością, jakiej oczekujesz od rzeczy premium.
-            </p>
-            <div className="mt-8">
-              <Link
-                href="/sklep"
-                className="inline-flex items-center gap-2 rounded-full border px-6 py-3 text-sm font-semibold shadow-sm transition hover:bg-black hover:text-white dark:border-gray-700"
-              >
-                Zobacz sklep <span aria-hidden>→</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Dwa zdjęcia */}
-          <div className="grid grid-cols-2 gap-6">
-            <div className="relative aspect-[3/4]">
-              <Image
-                src="/images/workshop1.jpg"
-                alt="Pracownia Craft Symphony – stojak z paskami i akcesoriami"
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="rounded-3xl object-cover shadow-sm"
-                loading="lazy"
-              />
-            </div>
-            <div className="relative aspect-[3/4]">
-              <Image
-                src="/images/workshop2.jpg"
-                alt="Detal rzemiosła – klamry i narzędzia w pracowni"
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="rounded-3xl object-cover shadow-sm"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+import { motion } from 'framer-motion'
 
 export default function HomePage() {
-  const allProducts = useMemo(
-    () => (categories as unknown as Category[]).flatMap((c) => c.products),
-    []
-  )
-
   return (
-    <>
-      {/* Górny baner */}
-      <Hero
-        title="Craft Symphony"
-        tagline="leather & wood"
-        subtitle="Wyjątkowy produkt, ręczne wykonanie z najlepszych skór i okuć. Perfekcyjne wykończenie i wieloletnia gwarancja jakości."
-        ctaShop="Przejdź do sklepu"
-      />
-      <GenderTiles />
+    <main className="bg-brand-light text-brand-dark">
+      {/* HERO */}
+{/* HERO */}
+{/* HERO */}
+<section className="relative">
+  {/* TŁO */}
+  <div className="absolute inset-0 z-0">
+    <Image
+      src="/images/banner.jpg"
+      alt="Filleo — włoskie smaki"
+      fill
+      priority
+      sizes="100vw"
+      className="object-cover"
+    />
+  </div>
 
-      {/* Duże kafelki + karuzela (4 na widok, do 12 łącznie) */}
-      <ProductCarousel title="Nowości" products={allProducts} />
+  {/* OVERLAY (nad zdjęciem, pod treścią) */}
+  <div className="absolute inset-0 z-10 pointer-events-none">
+    <div className="absolute inset-0 bg-black/45" />
+    <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/35 to-transparent" />
+  </div>
 
-      {/* Opis pracowni + 2 zdjęcia */}
-      <WorkshopSection />
+  {/* TREŚĆ */}
+  <div className="container relative z-20 flex min-h-[78vh] flex-col items-center justify-center gap-6 py-20 text-center text-white">
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="flex flex-col items-center"
+    >
+<Image
+  src="/images/filleo4.png"
+  alt="Filleo"
+  width={240}
+  height={240}
+  className="mb-6 w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-none drop-shadow-[0_12px_24px_rgba(0,0,0,0.45)]"
+  priority
+/>
 
-      <LifetimeWarranty image="/images/warranty.jpg" />
-      <WhatsAppContact phone="+48 500 600 700" />
-    </>
+      <h1 className="max-w-5xl text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-wide">
+        FILLEO – IMPORTUJEMY PASJĘ I DOSTARCZAMY JAKOŚĆ
+      </h1>
+      <p className="mt-4 max-w-3xl text-base md:text-lg text-white/90">
+        Włoskie wina i produkty premium bezpośrednio od producentów – z pasją i autentycznością.
+      </p>
+      <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+        <Link
+          href="#o-nas"
+          className="inline-flex items-center rounded-md bg-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide backdrop-blur hover:bg-white/20"
+        >
+          Poznaj nas
+        </Link>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
+
+      {/* O NAS / HISTORIA */}
+      <section id="o-nas" className="container py-16 md:py-24">
+        <div className="grid items-start gap-10 md:grid-cols-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-5"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-lg">
+              <Image
+                src="/images/filleo2.png" // zdjęcie tła sekcji / food shot
+                alt="Włoskie produkty Filleo"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-7"
+          >
+            <h2 className="text-2xl md:text-3xl font-semibold uppercase tracking-wide">
+              historia Filleo
+            </h2>
+            <div className="mt-4 space-y-4 leading-relaxed text-base/7 text-brand-dark/90">
+              <p>
+                Filleo to firma zrodzona z autentycznej pasji do włoskiej kultury kulinarnej. W ostatnich latach wyspecjalizowaliśmy się w imporcie najwyższej jakości win oraz produktów spożywczych, sprowadzanych bezpośrednio z Włoch i dedykowanych sektorowi gastronomicznemu.
+              </p>
+              <p>
+                Dzięki współpracy z renomowanymi producentami, dostarczamy na polski rynek prawdziwe smaki Italii, zachowując ich autentyczność i wyjątkowy charakter. Oferujemy również spersonalizowane zestawy prezentowe, idealne na śluby, eventy czy wydarzenia biznesowe – tworzone z dbałością o szczegóły i potrzeby Klienta.
+              </p>
+              <p>
+                Nasza oferta dynamicznie się rozwija – wychodzimy poza granice Polski, poszerzając działalność na rynki międzynarodowe. Wspieramy gastronomię oraz sektor biznesowy, zawsze stawiając na jakość, autentyczność i dopasowanie do oczekiwań odbiorców.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ZAŁOŻYCIELKA */}
+      <section className="bg-brand-beige/10 py-16 md:py-24">
+        <div className="container grid items-center gap-10 md:grid-cols-12">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-7 order-2 md:order-1"
+          >
+            <h3 className="text-2xl md:text-3xl font-semibold uppercase tracking-wide">
+              Karolina Filoniuk‑Leonardi
+            </h3>
+            <p className="mt-3 text-brand-red font-semibold">
+              Założycielka marki Filleo
+            </p>
+            <div className="mt-4 space-y-4 leading-relaxed text-base/7 text-brand-dark/90">
+              <p>
+                Karolina Filoniuk‑Leonardi jest założycielką marki Filleo, specjalizującej się w imporcie i dystrybucji włoskich produktów Premium na rynku polskim. Od ponad 20 lat mieszka i pracuje we Włoszech, gdzie zdobywa doświadczenie w branży gastronomicznej, logistycznej i marketingowej.
+              </p>
+              <p>
+                Dzięki wieloletniej obecności na włoskim rynku łączy autentyczne, lokalne tradycje kulinarne z nowoczesnym podejściem biznesowym, tworząc wyjątkowe oferty dla klientów indywidualnych i firm.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-5 order-1 md:order-2"
+          >
+            <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl border border-black/5 bg-white shadow-lg">
+              <Image
+                src="/images/karolina2.jpg" // podmień na prawdziwe zdjęcie
+                alt="Karolina Filoniuk‑Leonardi"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+{/* GALERIA / KAFELKI */}
+<section className="container py-16 md:py-24">
+  <div className="mb-8 flex items-center justify-between">
+    <h4 className="text-2xl md:text-3xl font-semibold uppercase tracking-wide">
+      Z życia naszych marek
+    </h4>
+    <Link href="/galeria" className="text-sm font-semibold uppercase tracking-wide text-brand-red hover:underline">
+      Zobacz więcej
+    </Link>
+  </div>
+
+  <div className="grid gap-4">
+    {/* RZĄD 1: dwa prostokąty */}
+    <div className="grid gap-4 md:grid-cols-2">
+      <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[4/3]">
+        <Image src="/images/photo.jpg" alt="kadr 1" fill className="object-cover" />
+      </div>
+      <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[4/3]">
+        <Image src="/images/photo.jpg" alt="kadr 2" fill className="object-cover" />
+      </div>
+    </div>
+
+    {/* RZĄD 2: jeden szeroki panoramiczny */}
+    <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[21/9]">
+      <Image src="/images/photo.jpg" alt="kadr panoramiczny" fill className="object-cover" />
+    </div>
+
+{/* RZĄD 3: lewo pion, prawo dwa prostokąty jeden pod drugim */}
+<div className="grid gap-4 md:grid-cols-2">
+  {/* lewa kolumna – pion */}
+  <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[3/4]">
+    <Image src="/images/photo.jpg" alt="kadr pionowy" fill className="object-cover" />
+  </div>
+
+  {/* prawa kolumna – dwa prostokąty wewnątrz kolumny o tej samej proporcji */}
+  <div className="relative aspect-[3/4]">
+    <div className="absolute inset-0 grid grid-rows-2 gap-4">
+      <div className="relative overflow-hidden rounded-2xl shadow-sm">
+        <Image src="/images/photo.jpg" alt="kadr 3" fill className="object-cover" />
+      </div>
+      <div className="relative overflow-hidden rounded-2xl shadow-sm">
+        <Image src="/images/photo.jpg" alt="kadr 4" fill className="object-cover" />
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  {/* przerwa i film */}
+  <div className="h-10 md:h-12" />
+  <div className="rounded-2xl border border-black/10 bg-black/5 p-3">
+    <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+      {/* podmień na iframe YouTube/Vimeo kiedy będziesz mieć link */}
+      <Image src="/images/photo.jpg" alt="Materiał wideo" fill className="object-cover" />
+      <div className="absolute inset-0 grid place-items-center">
+        <button className="rounded-full bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light shadow-lg">
+          Odtwórz film
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+      {/* CTA DO KONTAKTU */}
+      <section className="bg-brand-dark py-14 text-brand-light">
+        <div className="container grid items-center gap-6 md:grid-cols-2">
+          <h5 className="text-2xl md:text-3xl font-semibold uppercase tracking-wide">
+            Chcesz zamówić zestawy prezentowe lub nawiązać współpracę?
+          </h5>
+          <div className="flex flex-wrap items-center justify-start gap-3 md:justify-end">
+            <Link href="/kontakt" className="rounded-md bg-brand-red px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:opacity-90">
+              Skontaktuj się z nami
+            </Link>
+            <Link href="/o-nas" className="rounded-md border border-white/30 px-6 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-white/10">
+              Więcej o Filleo
+            </Link>
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }
