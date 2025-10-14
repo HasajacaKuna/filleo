@@ -53,11 +53,11 @@ export default function InspirationsPage() {
             <ul className="grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3">
               {[
                 '/images/gift1.jpg',
-                '/images/gift2.jpg',
-                '/images/gift3.jpg',
-                '/images/gift4.jpg',
-                '/images/gift5.jpg',
-                '/images/gift6.jpg',
+                '/images/gift1.jpg',
+                '/images/gift1.jpg',
+                '/images/gift1.jpg',
+                '/images/gift1.jpg',
+                '/images/gift1.jpg',
               ].map((src, i) => (
                 <li key={i} className="group relative overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm">
                   <div className={i % 5 === 0 ? 'aspect-[3/4]' : 'aspect-[4/3]'}>

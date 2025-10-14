@@ -33,7 +33,7 @@ export default async function BrandPage(
   const gallery =
     brand.images && brand.images.length > 0
       ? brand.images
-      : ['/images/photo.jpg', '/images/filleo2.png']; // <- upewnij się, że te pliki masz w /public/images/
+      : ['/images/filleo2.jpg', '/images/filleo2.png']; // <- upewnij się, że te pliki masz w /public/images/
 
   return (
     <main className="bg-brand-light text-brand-dark">
