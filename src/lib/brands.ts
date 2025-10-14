@@ -2,11 +2,12 @@
 export type Brand = {
   slug: string;
   name: string;
-  logo: string;     // ścieżka w /public
+  logo: string;
   tagline?: string;
-  link?: string;
   description?: string;
-  body?: string;    // dłuższy opis na podstronie
+  url?: string;        // opcjonalny link do strony marki
+  images?: string[];   // opcjonalna galeria
+  body?: string;       // dłuższy opis (Markdown)
 };
 
 const placeholderLogo = '/images/logoprzyklad.jpg';
@@ -17,9 +18,11 @@ export const brands: Brand[] = [
     name: '900WINE',
     logo: placeholderLogo,
     tagline: 'Doskonałe bąbelki z Veneto i Lombardii',
-    link: 'https://www.900wine.com',
+    url: 'https://www.900wine.com',
     description:
       'Nowoczesna marka win musujących łącząca włoską tradycję z innowacją.',
+    // opcjonalnie, jeśli chcesz mieć mini-galerię na stronie szczegółowej:
+    // images: ['/images/gallery/1.jpg', '/images/gallery/2.jpg'],
     body: `
 900wine to nie tylko nowoczesna marka win musujących, ale przede wszystkim rodzinny biznes, z którym jesteście związani od pierwszych lat jego powstawania. Marka harmonijnie integruje włoską tradycję z innowacyjnym podejściem do produkcji, oferując wyjątkowe produkty w duchu „Made in Italy” – doskonałe połączenie smaku, designu i autentyczności.
 
@@ -42,8 +45,8 @@ Rare Rosé Extra Dry zachwyca delikatnym różowym kolorem z fioletowymi refleks
 • Elegancja i finezja
     `,
   },
-  // 19 placeholderów
-  ...Array.from({ length: 19 }).map((_, i) => ({
+  // + 19 placeholderów (razem 20 pozycji)
+  ...Array.from({ length: 19 }).map((_, i): Brand => ({
     slug: `brand-${i + 1}`,
     name: `Marka ${i + 1}`,
     logo: placeholderLogo,

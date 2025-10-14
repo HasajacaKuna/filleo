@@ -1,86 +1,105 @@
-// app/marki/[slug]/page.tsx
-'use client';
-
-import { brands } from '@/lib/brands';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+// src/app/marki/[slug]/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { brands } from '@/lib/brands';
 
-type Props = { params: { slug: string } };
+type RouteParams = { slug: string };
 
-export default function BrandDetailPage({ params }: Props) {
-  const brand = brands.find((b) => b.slug === params.slug);
+// Next 15: params są Promisem – trzeba je zawaitować
+export async function generateMetadata(
+  { params }: { params: Promise<RouteParams> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const brand = brands.find((b) => b.slug === slug);
+  const title = brand ? `${brand.name} — Filleo` : 'Marka — Filleo';
+  const description =
+    brand?.description ?? 'Marka z portfolio Filleo — więcej informacji wkrótce.';
+  return { title, description, openGraph: { title, description } };
+}
 
-  if (!brand) {
-    return (
-      <main className="container py-16">
-        <Link href="/marki" className="inline-flex items-center gap-2 text-brand-red hover:underline">
-          <ArrowLeft className="h-4 w-4" /> Wróć do „Nasze marki”
-        </Link>
-        <h1 className="mt-6 text-2xl font-semibold">Marka nie została znaleziona.</h1>
-      </main>
-    );
-  }
+export default async function BrandPage(
+  { params }: { params: Promise<RouteParams> }
+) {
+  const { slug } = await params;
+  const brand = brands.find((b) => b.slug === slug);
+  if (!brand) return notFound();
 
   return (
     <main className="bg-brand-light text-brand-dark">
-      <section className="container py-8 md:py-12">
-        {/* back */}
-        <Link href="/marki" className="inline-flex items-center gap-2 text-brand-red hover:underline">
-          <ArrowLeft className="h-4 w-4" /> Wróć do „Nasze marki”
+      {/* Powrót */}
+      <section className="container py-6 md:py-8">
+        <Link
+          href="/marki"
+          className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide hover:underline"
+        >
+          ← Wróć do „Nasze marki”
         </Link>
+      </section>
 
-        {/* header */}
-        <div className="mt-6 grid gap-8 md:grid-cols-[220px,1fr]">
-          <div className="relative w-[180px] md:w-[220px] aspect-square rounded-xl bg-white ring-1 ring-black/10 shadow overflow-hidden">
-            <Image src={brand.logo} alt={brand.name} fill className="object-contain p-4" />
-          </div>
-
-          <div>
-            <h1 className="text-3xl md:text-4xl font-semibold uppercase tracking-wide">
-              {brand.name}
-            </h1>
-            {brand.tagline && (
-              <p className="mt-2 text-brand-red font-semibold">{brand.tagline}</p>
-            )}
-            {brand.description && (
-              <p className="mt-4 text-base/7 text-black/80">{brand.description}</p>
-            )}
-
-            <div className="mt-6 flex gap-3">
-              {brand.link && (
-                <a
-                  href={brand.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-md bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red"
-                >
-                  Chcę wiedzieć więcej <ExternalLink className="h-4 w-4" />
-                </a>
-              )}
+      {/* Treść */}
+      <section className="container pb-16 md:pb-24">
+        <div className="grid gap-8 md:grid-cols-12">
+          {/* Logo / karta */}
+          <div className="md:col-span-4">
+            <div className="relative aspect-square w-full max-w-xs overflow-hidden rounded-2xl bg-white ring-1 ring-black/5 shadow">
+              <Image
+                src={brand.logo}
+                alt={brand.name}
+                fill
+                priority
+                sizes="(min-width: 768px) 320px, 60vw"
+                className="object-contain p-6"
+              />
             </div>
           </div>
+
+          {/* Opis */}
+          <div className="md:col-span-8">
+            <h1 className="text-2xl md:text-4xl font-semibold uppercase tracking-wide">
+              {brand.name}
+            </h1>
+
+            {brand.tagline ? (
+              <p className="mt-2 text-brand-red font-semibold">{brand.tagline}</p>
+            ) : null}
+
+            <div className="mt-5 space-y-4 leading-relaxed text-brand-dark/90">
+              <p>
+                {brand.description ??
+                  'Opis tej marki pojawi się wkrótce. Zapraszamy niebawem po więcej informacji.'}
+              </p>
+            </div>
+
+            {brand.url ? (
+              <div className="mt-6">
+                <a
+                  href={brand.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-md bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red"
+                >
+                  Zobacz stronę marki
+                </a>
+              </div>
+            ) : null}
+          </div>
         </div>
 
-        {/* dłuższy opis (markdown-owy w prostym <pre>) */}
-        {brand.body && (
-          <article className="prose prose-neutral max-w-none mt-10">
-            {/* szybki render tekstu z zachowaniem nowych linii */}
-            <pre className="whitespace-pre-wrap font-sans text-base leading-7 text-black/80">
-              {brand.body}
-            </pre>
-          </article>
-        )}
-
-        {/* dwa przykładowe zdjęcia */}
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow">
-            <Image src="/images/photo.jpg" alt="Przykładowe zdjęcie 1" fill className="object-cover" />
+        {/* Galeria opcjonalnie */}
+        {brand.images?.length ? (
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {brand.images.map((src, i) => (
+              <div
+                key={`${brand.slug}-img-${i}`}
+                className="relative aspect-[4/3] overflow-hidden rounded-2xl ring-1 ring-black/5 shadow-sm"
+              >
+                <Image src={src} alt={`${brand.name} ${i + 1}`} fill className="object-cover" />
+              </div>
+            ))}
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow">
-            <Image src="/images/photo.jpg" alt="Przykładowe zdjęcie 2" fill className="object-cover" />
-          </div>
-        </div>
+        ) : null}
       </section>
     </main>
   );
