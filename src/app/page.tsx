@@ -172,33 +172,33 @@ export default function HomePage() {
     {/* RZĄD 1: dwa prostokąty */}
     <div className="grid gap-4 md:grid-cols-2">
       <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[4/3]">
-        <Image src="/images/filleo2.jpg" alt="kadr 1" fill className="object-cover" />
+        <Image src="/images/filleo2.png" alt="kadr 1" fill className="object-cover" />
       </div>
       <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[4/3]">
-        <Image src="/images/filleo2.jpg" alt="kadr 2" fill className="object-cover" />
+        <Image src="/images/filleo2.png" alt="kadr 2" fill className="object-cover" />
       </div>
     </div>
 
     {/* RZĄD 2: jeden szeroki panoramiczny */}
     <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[21/9]">
-      <Image src="/images/filleo2.jpg" alt="kadr panoramiczny" fill className="object-cover" />
+      <Image src="/images/filleo2.png" alt="kadr panoramiczny" fill className="object-cover" />
     </div>
 
 {/* RZĄD 3: lewo pion, prawo dwa prostokąty jeden pod drugim */}
 <div className="grid gap-4 md:grid-cols-2">
   {/* lewa kolumna – pion */}
   <div className="relative overflow-hidden rounded-2xl shadow-sm aspect-[3/4]">
-    <Image src="/images/filleo2.jpg" alt="kadr pionowy" fill className="object-cover" />
+    <Image src="/images/filleo2.png" alt="kadr pionowy" fill className="object-cover" />
   </div>
 
   {/* prawa kolumna – dwa prostokąty wewnątrz kolumny o tej samej proporcji */}
   <div className="relative aspect-[3/4]">
     <div className="absolute inset-0 grid grid-rows-2 gap-4">
       <div className="relative overflow-hidden rounded-2xl shadow-sm">
-        <Image src="/images/filleo2.jpg" alt="kadr 3" fill className="object-cover" />
+        <Image src="/images/filleo2.png" alt="kadr 3" fill className="object-cover" />
       </div>
       <div className="relative overflow-hidden rounded-2xl shadow-sm">
-        <Image src="/images/filleo2.jpg" alt="kadr 4" fill className="object-cover" />
+        <Image src="/images/filleo2.png" alt="kadr 4" fill className="object-cover" />
       </div>
     </div>
   </div>
@@ -212,7 +212,7 @@ export default function HomePage() {
   <div className="rounded-2xl border border-black/10 bg-black/5 p-3">
     <div className="relative aspect-video w-full overflow-hidden rounded-xl">
       {/* podmień na iframe YouTube/Vimeo kiedy będziesz mieć link */}
-      <Image src="/images/filleo2.jpg" alt="Materiał wideo" fill className="object-cover" />
+      <Image src="/images/filleo2.png" alt="Materiał wideo" fill className="object-cover" />
       <div className="absolute inset-0 grid place-items-center">
         <button className="rounded-full bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light shadow-lg">
           Odtwórz film
