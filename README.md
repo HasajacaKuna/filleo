@@ -18,6 +18,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Form e-mail setup (Kariera + Subskrybuj)
+
+Formularze wysylaja dane na backend i dalej na e-mail przez SMTP.
+
+1. Skopiuj `.env.example` do `.env.local`.
+2. Ustaw:
+   - `SMTP_HOST`
+   - `SMTP_PORT`
+   - `SMTP_USER`
+   - `SMTP_PASS`
+   - `MAIL_FROM`
+   - `MAIL_TO` (tu ustaw swoj docelowy adres odbiorczy)
+3. Uruchom aplikacje ponownie (`npm run dev`).
+
+Endpointy:
+- `POST /api/subscribe` (formularz subskrypcji)
+- `POST /api/career` (formularz kariera + zalacznik CV)
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

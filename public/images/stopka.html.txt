@@ -1,0 +1,24 @@
+<table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.35; color: #111214;">
+  <tr>
+    <td style="padding: 0 14px 0 0; vertical-align: middle;">
+      <img src="filogo.png" width="130" alt="Filleo" style="display:block; border:0; outline:none; text-decoration:none;">
+    </td>
+
+    <td style="border-left: 3px solid #cf9c5a; padding: 0 0 0 14px; vertical-align: middle;">
+      <div style="font-size: 14px; font-weight: 700; color:#111214;">Karolina Filoniuk-Leonardi</div>
+      <div style="font-size: 13px; color:#811417; font-weight: 700;">CEO</div>
+
+      <div style="height:8px; line-height:8px;">&nbsp;</div>
+
+      <div style="font-weight: 700;">Filleo Sp. z o.o.</div>
+      <div>ul. Michałowicza 13/9</div>
+      <div>43-502 Czechowice-Dziedzice, POLSKA</div>
+      <div style="color:#4c1b18;">NIP 6521745384 | KRS 0000789267</div>
+
+      <div style="height:8px; line-height:8px;">&nbsp;</div>
+
+      <div>Phone (PL): <a href="tel:+48691100235" style="color:#111214; text-decoration:none;">+48 691 100 235</a></div>
+      <div>Phone (IT): <a href="tel:+393473305511" style="color:#111214; text-decoration:none;">+39 347 330 5511</a></div>
+    </td>
+  </tr>
+</table>

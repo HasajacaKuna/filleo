@@ -1,178 +1,107 @@
-// app/polityka-prywatnosci/page.tsx
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
+import { useLanguage } from '../components/LanguageProvider';
+
+const SECTIONS = {
+  pl: [
+    ['1. Administrator danych', 'Administratorem danych jest Filleo Sp. z o.o. z siedziba w Czechowicach-Dziedzicach.'],
+    ['2. Zakres i cele', 'Przetwarzamy dane do kontaktu, obslugi zapytan, subskrypcji, rekrutacji oraz realizacji relacji handlowych.'],
+    ['3. Podstawy prawne', 'Podstawy: zgoda, realizacja umowy, obowiazki prawne oraz uzasadniony interes administratora.'],
+    ['4. Odbiorcy danych', 'Dane moga byc przekazywane dostawcom IT, ksiegowosci, podmiotom logistycznym i doradcom.'],
+    ['5. Okres przechowywania', 'Dane przechowujemy przez okres niezbedny do realizacji celu lub wymagany prawem.'],
+    ['6. Twoje prawa', 'Masz prawo dostepu, sprostowania, usuniecia, ograniczenia, sprzeciwu i skargi do organu nadzorczego.'],
+    ['7. Cookies', 'Uzywamy cookies niezbednych oraz - za zgoda - analitycznych i marketingowych.'],
+    ['8. Kontakt', 'W sprawach danych osobowych: sales@filleo.pl oraz marketing@filleo.pl.'],
+  ],
+  en: [
+    ['1. Data controller', 'The data controller is Filleo Sp. z o.o., based in Czechowice-Dziedzice, Poland.'],
+    ['2. Scope and purpose', 'We process data for contact, inquiries, subscription, recruitment, and business cooperation.'],
+    ['3. Legal basis', 'Legal basis: consent, contract performance, legal obligations, and legitimate interest.'],
+    ['4. Data recipients', 'Data may be shared with IT providers, accounting, logistics operators, and advisors.'],
+    ['5. Retention period', 'We keep data only as long as needed for the purpose or as required by law.'],
+    ['6. Your rights', 'You have the right to access, rectify, erase, restrict, object, and file a complaint.'],
+    ['7. Cookies', 'We use necessary cookies and, with consent, analytics and marketing cookies.'],
+    ['8. Contact', 'For privacy matters: sales@filleo.pl and marketing@filleo.pl.'],
+  ],
+  it: [
+    ['1. Titolare del trattamento', 'Il titolare del trattamento e Filleo Sp. z o.o., con sede a Czechowice-Dziedzice.'],
+    ['2. Ambito e finalita', 'Trattiamo i dati per contatto, richieste, iscrizione, selezione e relazioni commerciali.'],
+    ['3. Base giuridica', 'Basi giuridiche: consenso, esecuzione del contratto, obblighi legali e interesse legittimo.'],
+    ['4. Destinatari dei dati', 'I dati possono essere condivisi con fornitori IT, contabilita, logistica e consulenti.'],
+    ['5. Conservazione', 'Conserviamo i dati per il tempo necessario alla finalita o previsto dalla legge.'],
+    ['6. I tuoi diritti', 'Hai diritto di accesso, rettifica, cancellazione, limitazione, opposizione e reclamo.'],
+    ['7. Cookie', 'Usiamo cookie necessari e, con consenso, cookie analitici e marketing.'],
+    ['8. Contatti', 'Per privacy: sales@filleo.pl e marketing@filleo.pl.'],
+  ],
+} as const;
+
+const HEADER = {
+  pl: {
+    title: 'Polityka prywatnosci',
+    desc: 'Dokument wyjasnia, jak przetwarzamy Twoje dane osobowe w serwisie Filleo.',
+    update: 'Ostatnia aktualizacja: 24 lutego 2026',
+    toc: 'Spis tresci',
+    back: 'Wroc na strone glowna',
+    sub: 'Zostan przyjacielem Filleo',
+  },
+  en: {
+    title: 'Privacy policy',
+    desc: 'This document explains how we process your personal data on the Filleo website.',
+    update: 'Last update: February 24, 2026',
+    toc: 'Table of contents',
+    back: 'Back to homepage',
+    sub: 'Become a Filleo friend',
+  },
+  it: {
+    title: 'Informativa privacy',
+    desc: 'Questo documento spiega come trattiamo i tuoi dati personali sul sito Filleo.',
+    update: 'Ultimo aggiornamento: 24 febbraio 2026',
+    toc: 'Indice',
+    back: 'Torna alla homepage',
+    sub: 'Diventa amico di Filleo',
+  },
+} as const;
 
 export default function PrivacyPolicyPage() {
-  const updated = '14 października 2025';
+  const { language } = useLanguage();
+  const h = HEADER[language];
+  const sections = SECTIONS[language];
 
   return (
     <main className="bg-brand-light text-brand-dark">
-      {/* Nagłówek */}
       <section className="container py-12 md:py-16">
-        <h1 className="mt-3 text-3xl md:text-5xl font-extrabold uppercase leading-tight">
-          Polityka prywatności
-        </h1>
-        <p className="mt-3 text-brand-dark/70">
-          Niniejszy dokument wyjaśnia, jak przetwarzamy Twoje dane osobowe w serwisie Filleo.
-        </p>
-        <p className="mt-2 text-sm text-brand-dark/60">Ostatnia aktualizacja: {updated}</p>
+        <h1 className="mt-3 text-3xl font-extrabold uppercase leading-tight md:text-5xl">{h.title}</h1>
+        <p className="mt-3 text-brand-dark/70">{h.desc}</p>
+        <p className="mt-2 text-sm text-brand-dark/60">{h.update}</p>
       </section>
 
       <section className="container pb-16 md:pb-24">
         <div className="grid gap-8 md:grid-cols-12">
-          {/* Spis treści */}
           <aside className="md:col-span-4 lg:col-span-3">
-            <nav className="sticky top-24 rounded-2xl bg-white p-4 md:p-5 shadow-xl ring-1 ring-black/5 text-sm">
-              <h2 className="mb-3 text-base font-semibold uppercase tracking-wide">Spis treści</h2>
+            <nav className="sticky top-24 rounded-2xl bg-white p-4 text-sm shadow-xl ring-1 ring-black/5 md:p-5">
+              <h2 className="mb-3 text-base font-semibold uppercase tracking-wide">{h.toc}</h2>
               <ul className="space-y-2">
-                {[
-                  ['1. Administrator danych', '#admin'],
-                  ['2. Zakres i cele przetwarzania', '#cele'],
-                  ['3. Podstawy prawne (RODO)', '#podstawy'],
-                  ['4. Odbiorcy i przekazywanie danych', '#odbiorcy'],
-                  ['5. Okres przechowywania', '#retencja'],
-                  ['6. Twoje prawa', '#prawa'],
-                  ['7. Pliki cookies i podobne technologie', '#cookies'],
-                  ['8. Profilowanie i marketing', '#profilowanie'],
-                  ['9. Bezpieczeństwo danych', '#bezpieczenstwo'],
-                  ['10. Dobrowolność podania danych', '#dobrowolnosc'],
-                  ['11. Zmiany polityki', '#zmiany'],
-                  ['12. Kontakt', '#kontakt'],
-                ].map(([label, href]) => (
-                  <li key={href}>
-                    <a href={href} className="hover:underline">
-                      {label}
-                    </a>
+                {sections.map(([label], index) => (
+                  <li key={label}>
+                    <a href={`#sec-${index + 1}`} className="hover:underline">{label}</a>
                   </li>
                 ))}
               </ul>
             </nav>
           </aside>
 
-          {/* Treść */}
-          <article className="md:col-span-8 lg:col-span-9 rounded-2xl bg-white p-6 md:p-8 shadow-xl ring-1 ring-black/5 prose prose-neutral max-w-none">
-            <h2 id="admin" className="!mt-0">1. Administrator danych</h2>
-            <p>
-              Administratorem Twoich danych osobowych jest <strong>Filleo Sp. z o.o.</strong>, z siedzibą:
-              <br />
-              <span className="whitespace-pre-line">
-                Ul. Michałowicza 13/9{'\n'}
-                43-502 Czechowice-Dziedzice, Polska
-              </span>
-              <br />
-              NIP 6521745384, KRS 0000789267. Kontakt: <a href="mailto:sales@filleo.pl">sales@filleo.pl</a>,
-              <a className="ml-1" href="mailto:marketing@filleo.pl">marketing@filleo.pl</a>.
-            </p>
-
-            <h2 id="cele">2. Zakres i cele przetwarzania</h2>
-            <p>Przetwarzamy dane osobowe w następujących celach:</p>
-            <ul>
-              <li><strong>Kontakt i zapytania</strong> (formularze, e-mail, telefon) – identyfikacja i obsługa zapytania.</li>
-              <li><strong>Subskrypcja</strong> – wysyłka newslettera/informacji handlowych po wyrażeniu zgody.</li>
-              <li><strong>Rekrutacja/Kariera</strong> – rozpatrzenie zgłoszeń kandydatów (CV/portfolio).</li>
-              <li><strong>Relacje handlowe</strong> – przygotowanie ofert, realizacja zamówień, fakturowanie.</li>
-              <li><strong>Analiza i statystyka</strong> – poprawa działania serwisu, pomiar ruchu (cookies/analityka).</li>
-              <li><strong>Bezpieczeństwo</strong> – zapobieganie nadużyciom, dochodzenie roszczeń.</li>
-            </ul>
-            <p>Zakres danych obejmuje m.in. imię, nazwisko, e-mail, numer telefonu, adres korespondencyjny, dane firmy,
-              treść wiadomości, dane o interakcji z serwisem (np. adres IP, identyfikatory cookies, logi).</p>
-
-            <h2 id="podstawy">3. Podstawy prawne (RODO)</h2>
-            <ul>
-              <li><strong>Art. 6 ust. 1 lit. a RODO</strong> – zgoda (np. newsletter, marketing).</li>
-              <li><strong>Art. 6 ust. 1 lit. b RODO</strong> – wykonanie umowy lub działania przedumowne (zapytania ofertowe, realizacja zamówień).</li>
-              <li><strong>Art. 6 ust. 1 lit. c RODO</strong> – obowiązki prawne (np. podatkowe, rachunkowe).</li>
-              <li><strong>Art. 6 ust. 1 lit. f RODO</strong> – prawnie uzasadniony interes Administratora (analiza statystyczna, zabezpieczenie roszczeń, komunikacja B2B, podstawowy marketing własny).</li>
-            </ul>
-
-            <h2 id="odbiorcy">4. Odbiorcy i przekazywanie danych</h2>
-            <p>
-              Dane mogą być powierzane dostawcom usług IT (hosting, poczta, analityka), księgowości, doradcom
-              prawnym, firmom kurierskim, operatorom płatności, a w rekrutacji – dostawcom systemów HR. W razie
-              korzystania z narzędzi mających serwery poza EOG, przekazanie odbywa się zgodnie z RODO (np. standardowe
-              klauzule umowne, dodatkowe środki bezpieczeństwa).
-            </p>
-
-            <h2 id="retencja">5. Okres przechowywania</h2>
-            <ul>
-              <li>Korespondencja/zgłoszenia – przez czas potrzebny do obsługi sprawy i obrony roszczeń (zwykle do 3 lat).</li>
-              <li>Dane subskrybentów – do czasu wycofania zgody, a następnie w ograniczonym zakresie dla rozliczalności.</li>
-              <li>Dokumentacja księgowa – zgodnie z przepisami (zwykle 5 lat).</li>
-              <li>Dane rekrutacyjne – do 6 miesięcy od zakończenia rekrutacji, chyba że wyrażono zgodę na dłużej.</li>
-              <li>Cookies/analityka – zgodnie z cyklem życia ciasteczek lub do czasu ich usunięcia.</li>
-            </ul>
-
-            <h2 id="prawa">6. Twoje prawa</h2>
-            <p>
-              Przysługują Ci prawa: dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia,
-              sprzeciwu wobec przetwarzania (w tym wobec marketingu bezpośredniego), a także prawo wycofania zgody w
-              dowolnym momencie (bez wpływu na zgodność z prawem wcześniejszego przetwarzania).
-            </p>
-            <p>
-              Masz też prawo złożyć skargę do organu nadzorczego – Prezesa Urzędu Ochrony Danych Osobowych (UODO).
-            </p>
-
-            <h2 id="cookies">7. Pliki cookies i podobne technologie</h2>
-            <p>
-              Wykorzystujemy cookies niezbędne (zapewniające działanie serwisu) oraz – za Twoją zgodą – analityczne i
-              marketingowe (pomiar ruchu, personalizacja treści). Możesz zarządzać cookies w ustawieniach przeglądarki
-              lub przez banner/centrum preferencji (jeśli dostępne). Wyłączenie części cookies może ograniczyć funkcje serwisu.
-            </p>
-            <ul>
-              <li><strong>Cookies sesyjne</strong> – usuwane po zamknięciu przeglądarki.</li>
-              <li><strong>Cookies stałe</strong> – przechowywane dłużej (zgodnie z ich cyklem życia).</li>
-              <li><strong>LocalStorage/SessionStorage</strong> – pamiętanie preferencji na urządzeniu użytkownika.</li>
-            </ul>
-
-            <h2 id="profilowanie">8. Profilowanie i marketing</h2>
-            <p>
-              Możemy prowadzić podstawowy marketing własny (np. dobór wiadomości do segmentu odbiorców). Nie podejmujemy
-              decyzji wywołujących skutki prawne wyłącznie w oparciu o zautomatyzowane przetwarzanie. W każdym momencie
-              możesz sprzeciwić się marketingowi bezpośredniemu.
-            </p>
-
-            <h2 id="bezpieczenstwo">9. Bezpieczeństwo danych</h2>
-            <p>
-              Stosujemy środki techniczne i organizacyjne odpowiednie do ryzyka (m.in. szyfrowanie transmisji, kontrola
-              dostępu, kopie bezpieczeństwa, zasada minimalizacji danych).
-            </p>
-
-            <h2 id="dobrowolnosc">10. Dobrowolność podania danych</h2>
-            <p>
-              Podanie danych jest dobrowolne, lecz może być niezbędne do: kontaktu, subskrypcji, realizacji umowy,
-              rozliczeń czy rekrutacji. Brak danych może uniemożliwić realizację danej usługi/czynności.
-            </p>
-
-            <h2 id="zmiany">11. Zmiany polityki</h2>
-            <p>
-              Polityka może być aktualizowana w celu dostosowania do zmian prawa lub procesów. Nowa wersja będzie publikowana
-              na tej stronie wraz z datą aktualizacji.
-            </p>
-
-            <h2 id="kontakt">12. Kontakt</h2>
-            <p>
-              W sprawach dotyczących danych osobowych skontaktuj się z nami:
-              <br />
-              <strong>E-mail:</strong> <a href="mailto:sales@filleo.pl">sales@filleo.pl</a>,{' '}
-              <a href="mailto:marketing@filleo.pl">marketing@filleo.pl</a>
-              <br />
-              <strong>Adres korespondencyjny:</strong> Filleo Sp. z o.o., Ul. Michałowicza 13/9, 43-502 Czechowice-Dziedzice, Polska
-            </p>
+          <article className="prose prose-neutral max-w-none rounded-2xl bg-white p-6 shadow-xl ring-1 ring-black/5 md:col-span-8 md:p-8 lg:col-span-9">
+            {sections.map(([title, text], index) => (
+              <section key={title}>
+                <h2 id={`sec-${index + 1}`} className={index === 0 ? '!mt-0' : ''}>{title}</h2>
+                <p>{text}</p>
+              </section>
+            ))}
 
             <div className="mt-10 flex flex-wrap gap-3">
-              <Link
-                href="/"
-                className="inline-flex items-center rounded-full border border-brand-dark/15 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-black/5"
-              >
-                Wróć na stronę główną
-              </Link>
-              <Link
-                href="/subskrybuj"
-                className="inline-flex items-center rounded-full bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red"
-              >
-                Zostań przyjacielem Filleo
-              </Link>
+              <Link href="/" className="inline-flex items-center rounded-full border border-brand-dark/15 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-black/5">{h.back}</Link>
+              <Link href="/subskrybuj" className="inline-flex items-center rounded-full bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red">{h.sub}</Link>
             </div>
           </article>
         </div>
@@ -180,3 +109,4 @@ export default function PrivacyPolicyPage() {
     </main>
   );
 }
+
