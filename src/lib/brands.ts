@@ -17,7 +17,7 @@ export const brands: Brand[] = [
   {
     slug: 'food-loop',
     name: 'Food Loop',
-    logo: '/images/logos/BNJB5040.JPG',
+    logo: '/images/logos/BNJB5040.png',
     tagline: {
       pl: 'Italian Gourmet',
       en: 'Italian Gourmet',
