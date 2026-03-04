@@ -5,6 +5,7 @@ import { Nunito } from 'next/font/google'
 import Navbar from '../app/components/Navbar' // <- nasz komponent z poprzedniej wiadomoĹ›ci
 import Footer from '../app/components/Footer' // <- nasz komponent z poprzedniej wiadomoĹ›ci
 import { LanguageProvider } from '../app/components/LanguageProvider'
+import AgeGate from '../app/components/AgeGate'
 
 const nunito = Nunito({
   subsets: ['latin', 'latin-ext'],
@@ -14,9 +15,9 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'Filleo - wloskie produkty premium',
+  title: 'Filleo - włoskie produkty premium',
   description:
-    'Filleo: import win i wloskich produktow premium. Zestawy prezentowe, oferta dla gastronomii i biznesu.',
+    'Filleo: import win i włoskich produktów premium. Zestawy prezentowe, oferta dla gastronomii i biznesu.',
   metadataBase:
     new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'),
   icons: {
@@ -29,15 +30,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl">
-      {/* font-sans bierze Nunito z tailwinda (patrz config niĹĽej) */}
       <body className={`${nunito.variable} font-sans bg-brand-light text-brand-dark antialiased`}>
         <LanguageProvider>
-          <Navbar />
-
-          {/* Nie dodajÄ™ globalnej .container, bo sekcje na stronie jÄ… juĹĽ majÄ… */}
-          <main className="min-h-[60vh]">{children}</main>
-
-          <Footer />
+          <AgeGate>
+            <Navbar />
+            <main className="min-h-[60vh]">{children}</main>
+            <Footer />
+          </AgeGate>
         </LanguageProvider>
       </body>
     </html>

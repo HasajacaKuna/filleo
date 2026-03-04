@@ -6,9 +6,9 @@ import { useLanguage } from '../components/LanguageProvider';
 const COPY = {
   pl: {
     title: 'Sklep w przygotowaniu',
-    text: 'Intensywnie nad nim pracujemy. Zapraszamy wkrotce!',
+    text: 'Intensywnie nad nim pracujemy. Zapraszamy wkrótce!',
     notify: 'Powiadom mnie, gdy ruszy',
-    contact: 'Skontaktuj sie z nami',
+    contact: 'Skontaktuj się z nami',
   },
   en: {
     title: 'Shop coming soon',

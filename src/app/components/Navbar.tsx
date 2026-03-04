@@ -29,9 +29,9 @@ const TRANSLATIONS = {
     career: 'Kariera',
     about: 'O nas',
     contact: 'Kontakt',
-    shopOnline: 'Sklep on-line',
-    openMenu: 'OtwĂłrz menu',
-    language: 'JÄ™zyk',
+    shopOnline: 'Sklep online',
+    openMenu: 'Otwórz menu',
+    language: 'Język',
   },
   en: {
     brands: 'Our brands',

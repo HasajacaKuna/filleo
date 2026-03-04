@@ -12,30 +12,30 @@ type FormState = {
 
 const COPY = {
   pl: {
-    thanks: 'Dziekujemy!',
-    thanksText: 'Otrzymalismy Twoje zgloszenie. Skontaktujemy sie, jesli bedziemy mieli dopasowana rekrutacje.',
-    title: 'Jestesmy\nw kontakcie',
-    intro: 'Dolacz do Filleo. Jesli kochasz wloska kulture kulinarna i prace z gastronomia, wyslij nam wiadomosc i CV.',
-    b1: 'Elastyczna wspolpraca (B2B / umowa)',
-    b2: 'Realny wplyw na oferte i marki',
+    thanks: 'Dziękujemy!',
+    thanksText: 'Otrzymaliśmy Twoje zgłoszenie. Skontaktujemy się, jeśli będziemy mieli dopasowaną rekrutację.',
+    title: 'Jesteśmy\nw kontakcie',
+    intro: 'Dołącz do Filleo. Jeśli kochasz włoską kulturę kulinarną i pracę z gastronomią, wyślij nam wiadomość i CV.',
+    b1: 'Elastyczna współpraca (B2B / umowa)',
+    b2: 'Realny wpływ na ofertę i marki',
     b3: 'Wydarzenia, degustacje, targi',
-    name: 'Imie i nazwisko*',
+    name: 'Imię i nazwisko*',
     email: 'Adres e-mail*',
-    message: 'Wiadomosc*',
+    message: 'Wiadomość*',
     file: 'CV / portfolio (PDF, DOCX, max 8 MB)*',
-    fileAdd: 'Kliknij, aby dodac plik...',
+    fileAdd: 'Kliknij, aby dodać plik...',
     choose: 'Wybierz',
-    send: 'Wyslij',
-    sending: 'Wysylanie...',
-    eName: 'Podaj imie i nazwisko',
+    send: 'Wyślij',
+    sending: 'Wysyłanie...',
+    eName: 'Podaj imię i nazwisko',
     eEmail: 'Podaj poprawny e-mail',
-    eMessage: 'Napisz kilka zdan o sobie',
+    eMessage: 'Napisz kilka zdań o sobie',
     eFile: 'Dodaj CV lub portfolio',
-    eSize: 'Maksymalny rozmiar 8 MB',
-    pName: 'Wprowadz swoje imie i nazwisko',
-    pEmail: 'Wprowadz adres e-mail',
-    pMessage: 'Kilka zdan o doswiadczeniu i motywacji',
-    eSend: 'Nie udalo sie wyslac formularza. Sprobuj ponownie.',
+    eSize: 'Maksymalny rozmiar: 8 MB',
+    pName: 'Wprowadź swoje imię i nazwisko',
+    pEmail: 'Wprowadź adres e-mail',
+    pMessage: 'Kilka zdań o doświadczeniu i motywacji',
+    eSend: 'Nie udało się wysłać formularza. Spróbuj ponownie.',
   },
   en: {
     thanks: 'Thank you!',
@@ -101,7 +101,8 @@ export default function CareerPage() {
   const [sent, setSent] = useState(false);
 
   const onChangeField = (key: Exclude<keyof FormState, 'file'>) => (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm((f) => ({ ...f, [key]: e.currentTarget.value }));
+    const value = e.currentTarget.value;
+    setForm((f) => ({ ...f, [key]: value }));
     setErrors((er) => ({ ...er, [key]: '' }));
   };
 

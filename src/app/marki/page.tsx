@@ -7,7 +7,7 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
   pl: {
-    quote: 'Oferujac ponad 200 marek i sprzedaz w niemal 180 krajach, mamy cos na kazdy gust i okazje.',
+    quote: 'Oferując ponad 200 marek i sprzedaż w niemal 180 krajach, mamy coś na każdy gust i okazję.',
     title: 'Nasze marki',
   },
   en: {

@@ -7,15 +7,15 @@ import { useLanguage } from '../components/LanguageProvider';
 const COPY = {
   pl: {
     title: 'Kontakt',
-    subtitle: 'Jestesmy do Twojej dyspozycji. Ponizej znajdziesz pelne dane kontaktowe.',
+    subtitle: 'Jesteśmy do Twojej dyspozycji. Poniżej znajdziesz pełne dane kontaktowe.',
     quick: 'Szybki kontakt',
-    quickText: 'Wolisz zadzwonic czy napisac? Wybierz kanal.',
-    call: 'Zadzwon (PL)',
-    writeSales: 'Napisz do sprzedazy',
+    quickText: 'Wolisz zadzwonić czy napisać? Wybierz kanał.',
+    call: 'Zadzwoń (PL)',
+    writeSales: 'Napisz do sprzedaży',
     writeMarketing: 'Napisz do marketingu',
     whatsapp: 'Napisz na WhatsApp',
     instagram: 'Napisz na Instagramie',
-    friend: 'Zostan przyjacielem Filleo',
+    friend: 'Zostań przyjacielem Filleo',
     response: 'Odpowiadamy zazwyczaj tego samego dnia roboczego.',
   },
   en: {
@@ -67,7 +67,7 @@ export default function ContactPage() {
               </header>
 
               <ul className="space-y-4 text-[15px] leading-6">
-                <li className="flex gap-3"><MapPin className="mt-1 h-5 w-5 text-brand-red" /><div>Ul. Michalowicza 13/9<br />43-502 Czechowice-Dziedzice, Polska</div></li>
+                <li className="flex gap-3"><MapPin className="mt-1 h-5 w-5 text-brand-red" /><div>Ul. Michałowicza 13/9<br />43-502 Czechowice-Dziedzice, Polska</div></li>
                 <li className="flex gap-3"><User2 className="mt-1 h-5 w-5 text-brand-red" /><div className="flex flex-wrap gap-x-4"><span>NIP 6521745384</span><span>KRS 0000789267</span></div></li>
                 <li className="flex gap-3"><Mail className="mt-1 h-5 w-5 text-brand-red" /><div className="flex flex-col"><a className="hover:underline" href="mailto:sales@filleo.pl">sales@filleo.pl</a><a className="hover:underline" href="mailto:marketing@filleo.pl">marketing@filleo.pl</a></div></li>
               </ul>

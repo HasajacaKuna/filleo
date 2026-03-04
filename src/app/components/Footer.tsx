@@ -6,11 +6,11 @@ import { useLanguage } from './LanguageProvider';
 
 const COPY = {
   pl: {
-    rights: 'Wszelkie prawa zastrzezone.',
+    rights: 'Wszelkie prawa zastrzeżone.',
     about: 'O nas',
     shop: 'Sklep',
     contact: 'Kontakt',
-    privacy: 'Polityka prywatnosci',
+    privacy: 'Polityka prywatności',
   },
   en: {
     rights: 'All rights reserved.',

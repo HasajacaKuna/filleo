@@ -5,13 +5,13 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const SECTIONS = {
   pl: [
-    ['1. Administrator danych', 'Administratorem danych jest Filleo Sp. z o.o. z siedziba w Czechowicach-Dziedzicach.'],
-    ['2. Zakres i cele', 'Przetwarzamy dane do kontaktu, obslugi zapytan, subskrypcji, rekrutacji oraz realizacji relacji handlowych.'],
-    ['3. Podstawy prawne', 'Podstawy: zgoda, realizacja umowy, obowiazki prawne oraz uzasadniony interes administratora.'],
-    ['4. Odbiorcy danych', 'Dane moga byc przekazywane dostawcom IT, ksiegowosci, podmiotom logistycznym i doradcom.'],
-    ['5. Okres przechowywania', 'Dane przechowujemy przez okres niezbedny do realizacji celu lub wymagany prawem.'],
-    ['6. Twoje prawa', 'Masz prawo dostepu, sprostowania, usuniecia, ograniczenia, sprzeciwu i skargi do organu nadzorczego.'],
-    ['7. Cookies', 'Uzywamy cookies niezbednych oraz - za zgoda - analitycznych i marketingowych.'],
+    ['1. Administrator danych', 'Administratorem danych jest Filleo Sp. z o.o. z siedzibą w Czechowicach-Dziedzicach.'],
+    ['2. Zakres i cele', 'Przetwarzamy dane do kontaktu, obsługi zapytań, subskrypcji, rekrutacji oraz realizacji relacji handlowych.'],
+    ['3. Podstawy prawne', 'Podstawy: zgoda, realizacja umowy, obowiązki prawne oraz uzasadniony interes administratora.'],
+    ['4. Odbiorcy danych', 'Dane mogą być przekazywane dostawcom IT, księgowości, podmiotom logistycznym i doradcom.'],
+    ['5. Okres przechowywania', 'Dane przechowujemy przez okres niezbędny do realizacji celu lub wymagany prawem.'],
+    ['6. Twoje prawa', 'Masz prawo dostępu, sprostowania, usunięcia, ograniczenia, sprzeciwu i skargi do organu nadzorczego.'],
+    ['7. Cookies', 'Używamy cookies niezbędnych oraz, za zgodą, analitycznych i marketingowych.'],
     ['8. Kontakt', 'W sprawach danych osobowych: sales@filleo.pl oraz marketing@filleo.pl.'],
   ],
   en: [
@@ -38,12 +38,12 @@ const SECTIONS = {
 
 const HEADER = {
   pl: {
-    title: 'Polityka prywatnosci',
-    desc: 'Dokument wyjasnia, jak przetwarzamy Twoje dane osobowe w serwisie Filleo.',
+    title: 'Polityka prywatności',
+    desc: 'Dokument wyjaśnia, jak przetwarzamy Twoje dane osobowe w serwisie Filleo.',
     update: 'Ostatnia aktualizacja: 24 lutego 2026',
-    toc: 'Spis tresci',
-    back: 'Wroc na strone glowna',
-    sub: 'Zostan przyjacielem Filleo',
+    toc: 'Spis treści',
+    back: 'Wróć na stronę główną',
+    sub: 'Zostań przyjacielem Filleo',
   },
   en: {
     title: 'Privacy policy',

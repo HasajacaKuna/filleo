@@ -13,8 +13,8 @@ type Locale = 'pl' | 'en' | 'it';
 const COPY = {
   pl: {
     back: 'Wróć do "Nasze marki"',
-    visit: 'Zobacz strone marki',
-    fallbackDescription: 'Marka z portfolio Filleo - wiecej informacji wkrotce.',
+    visit: 'Zobacz stronę marki',
+    fallbackDescription: 'Marka z portfolio Filleo. Więcej informacji wkrótce.',
     fallbackTitle: 'Marka - Filleo',
   },
   en: {

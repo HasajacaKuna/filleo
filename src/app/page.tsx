@@ -7,8 +7,8 @@ import { useLanguage } from './components/LanguageProvider';
 
 const COPY = {
   pl: {
-    heroTitle: 'FILLEO - IMPORTUJEMY PASJE I DOSTARCZAMY JAKOSC',
-    heroText: 'Wloskie wina i produkty premium bezposrednio od producentow.',
+    heroTitle: 'FILLEO - IMPORTUJEMY PASJĘ I DOSTARCZAMY JAKOŚĆ',
+    heroText: 'Włoskie wina i produkty premium bezpośrednio od producentów.',
     discover: 'Poznaj nas',
     historyTitle: 'Historia Filleo',
     historyP1: 'Filleo to firma zrodzona z autentycznej pasji do włoskiej kultury kulinarnej. W ostatnich latach wyspecjalizowaliśmy się w imporcie najwyższej jakości win oraz produktów spożywczych, sprowadzanych bezpośrednio z Włoch i dedykowanych sektorowi gastronomicznemu.',
@@ -17,12 +17,12 @@ const COPY = {
     founderRole: 'Założycielka marki Filleo',
     founderP1: 'Karolina Filoniuk‑Leonardi jest założycielką marki Filleo, specjalizującej się w imporcie i dystrybucji włoskich produktów Premium na rynku polskim. Od ponad 20 lat mieszka i pracuje we Włoszech, gdzie zdobywa doświadczenie w branży gastronomicznej, logistycznej i marketingowej.',
     founderP2: 'Dzięki wieloletniej obecności na włoskim rynku łączy autentyczne, lokalne tradycje kulinarne z nowoczesnym podejściem biznesowym, tworząc wyjątkowe oferty dla klientów indywidualnych i firm.',
-    galleryTitle: 'Z zycia naszych marek',
-    seeMore: 'Zobacz wiecej',
-    playVideo: 'Odtworz film',
-    ctaTitle: 'Chcesz zamowic zestawy prezentowe lub nawiazac wspolprace?',
-    ctaContact: 'Skontaktuj sie z nami',
-    ctaAbout: 'Wiecej o Filleo',
+    galleryTitle: 'Z życia naszych marek',
+    seeMore: 'Zobacz więcej',
+    playVideo: 'Odtwórz film',
+    ctaTitle: 'Chcesz zamówić zestawy prezentowe lub nawiązać współpracę?',
+    ctaContact: 'Skontaktuj się z nami',
+    ctaAbout: 'Więcej o Filleo',
   },
   en: {
     heroTitle: 'FILLEO - WE IMPORT PASSION AND DELIVER QUALITY',

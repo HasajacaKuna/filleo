@@ -6,13 +6,13 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
   pl: {
-    quote: 'Tutaj pokazujemy nasze inspiracje - od zestawow prezentowych po drinki.',
+    quote: 'Tutaj pokazujemy nasze inspiracje: od zestawów prezentowych po drinki.',
     gifts: 'Zestawy prezentowe',
-    giftsText: 'Szukasz idealnego zestawu? Wybierz gotowy box albo napisz do nas po wersje custom.',
-    contact: 'Skontaktuj sie - pomozemy dobrac zestaw',
+    giftsText: 'Szukasz idealnego zestawu? Wybierz gotowy box albo napisz do nas po wersję custom.',
+    contact: 'Skontaktuj się, pomożemy dobrać zestaw',
     cocktails: 'Koktajle Filleo',
-    cocktailsText: 'Lacz i miksuj skladniki, aby stworzyc swoj ulubiony styl.',
-    play: 'Odtworz film',
+    cocktailsText: 'Łącz i miksuj składniki, aby stworzyć swój ulubiony styl.',
+    play: 'Odtwórz film',
   },
   en: {
     quote: 'Here we present our inspirations - from gift sets to cocktail ideas.',
@@ -62,10 +62,10 @@ export default function InspirationsPage() {
             </header>
 
             <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-              {['/images/gift1.jpg', '/images/gift2.JPG', '/images/gift3.JPG', '/images/gift4.JPG', '/images/gift5.JPG', '/images/gift6.JPG'].map((src, i) => (
+              {['/images/gift1.jpg', '/images/gift2a.jpg', '/images/gift3a.jpg', '/images/gift4a.jpg', '/images/gift5a.jpg', '/images/gift6a.jpg'].map((src, i) => (
                 <li key={i} className="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5">
                   <div className={i % 5 === 0 ? 'aspect-[3/4]' : 'aspect-[4/3]'}>
-                    <Image src={src} alt={`Gift ${i + 1}`} fill className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
+                    <Image src={src} alt={`Gift ${i + 1}`} fill className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" unoptimized />
                   </div>
                 </li>
               ))}
