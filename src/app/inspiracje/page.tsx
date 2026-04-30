@@ -6,31 +6,22 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
   pl: {
-    quote: 'Tutaj pokazujemy nasze inspiracje: od zestawów prezentowych po drinki.',
+    quote: 'Tutaj pokazujemy nasze inspiracje: zestawy prezentowe.',
     gifts: 'Zestawy prezentowe',
     giftsText: 'Szukasz idealnego zestawu? Wybierz gotowy box albo napisz do nas po wersję custom.',
     contact: 'Skontaktuj się, pomożemy dobrać zestaw',
-    cocktails: 'Koktajle Filleo',
-    cocktailsText: 'Łącz i miksuj składniki, aby stworzyć swój ulubiony styl.',
-    play: 'Odtwórz film',
   },
   en: {
-    quote: 'Here we present our inspirations - from gift sets to cocktail ideas.',
+    quote: 'Here we present our inspirations: gift sets.',
     gifts: 'Gift sets',
     giftsText: 'Looking for a perfect set? Choose a ready box or contact us for a custom one.',
     contact: 'Contact us - we will help you choose',
-    cocktails: 'Filleo cocktails',
-    cocktailsText: 'Mix and combine ingredients to create your own style.',
-    play: 'Play video',
   },
   it: {
-    quote: 'Qui presentiamo le nostre ispirazioni - dai gift set alle idee cocktail.',
+    quote: 'Qui presentiamo le nostre ispirazioni: gift set.',
     gifts: 'Gift set',
     giftsText: 'Cerchi il set perfetto? Scegli un box pronto o contattaci per una versione personalizzata.',
     contact: 'Contattaci - ti aiutiamo a scegliere',
-    cocktails: 'Cocktail Filleo',
-    cocktailsText: 'Combina gli ingredienti per creare il tuo stile preferito.',
-    play: 'Riproduci video',
   },
 } as const;
 
@@ -76,34 +67,6 @@ export default function InspirationsPage() {
                 {t.contact}
               </Link>
             </div>
-
-            <div className="my-12 h-px w-full bg-black/10" />
-
-            <header className="mb-6 text-center">
-              <h2 className="text-2xl font-semibold uppercase tracking-wide md:text-3xl">{t.cocktails}</h2>
-              <p className="mx-auto mt-3 max-w-3xl text-black/70">{t.cocktailsText}</p>
-            </header>
-
-            <ul className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <li key={i} className="group relative overflow-hidden rounded-2xl shadow-sm ring-1 ring-black/5">
-                  <div className="aspect-[4/5] md:aspect-square">
-                    <Image src="/images/drink.jpg" alt={`Drink ${i + 1}`} fill className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <div className="my-12 h-px w-full bg-black/10" />
-
-            <section aria-labelledby="film-900" className="space-y-4">
-              <div className="relative aspect-video overflow-hidden rounded-2xl shadow ring-1 ring-black/10">
-                <Image src="/images/wine.jpg" alt="Video" fill className="object-cover" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <button className="rounded-full bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light shadow-lg">{t.play}</button>
-                </div>
-              </div>
-            </section>
           </div>
         </div>
       </section>
