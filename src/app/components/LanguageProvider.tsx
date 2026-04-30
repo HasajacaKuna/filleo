@@ -1,6 +1,7 @@
 ﻿'use client';
 
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
+import { createContext, useContext, useEffect, useMemo, useState, useCallback, type ReactNode } from 'react';
 
 export type Language = 'pl' | 'en' | 'it';
 
@@ -21,6 +22,7 @@ function isLanguage(value: string | null): value is Language {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('pl');
+  const router = useRouter();
 
   useEffect(() => {
     const savedLanguage = window.localStorage.getItem(STORAGE_KEY);
@@ -33,18 +35,19 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language;
   }, [language]);
 
-  const setLanguage = (nextLanguage: Language) => {
+  const setLanguage = useCallback((nextLanguage: Language) => {
     setLanguageState(nextLanguage);
     window.localStorage.setItem(STORAGE_KEY, nextLanguage);
     document.cookie = `${COOKIE_KEY}=${nextLanguage}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; samesite=lax`;
-  };
+    router.refresh();
+  }, [router]);
 
   const value = useMemo(
     () => ({
       language,
       setLanguage,
     }),
-    [language],
+    [language, setLanguage],
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

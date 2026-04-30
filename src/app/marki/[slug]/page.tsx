@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { BrandGallery } from '@/app/components/BrandGallery';
 import { brands, type LocalizedText } from '@/lib/brands';
 
 type RouteParams = { slug: string };
@@ -14,18 +15,21 @@ const COPY = {
   pl: {
     back: 'Wróć do "Nasze marki"',
     visit: 'Zobacz stronę marki',
+    gallery: 'Galeria',
     fallbackDescription: 'Marka z portfolio Filleo. Więcej informacji wkrótce.',
     fallbackTitle: 'Marka - Filleo',
   },
   en: {
     back: 'Back to "Our brands"',
     visit: 'Visit brand website',
+    gallery: 'Gallery',
     fallbackDescription: 'Brand from Filleo portfolio - more details soon.',
     fallbackTitle: 'Brand - Filleo',
   },
   it: {
     back: 'Torna a "I nostri marchi"',
     visit: 'Vai al sito del marchio',
+    gallery: 'Galleria',
     fallbackDescription: 'Marchio del portfolio Filleo - maggiori dettagli presto.',
     fallbackTitle: 'Marchio - Filleo',
   },
@@ -102,6 +106,12 @@ export default async function BrandPage({ params }: { params: Promise<RouteParam
           </div>
         </div>
 
+        {brand.images?.length ? (
+          <section className="mt-12 border-t border-black/10 pt-10">
+            <h2 className="text-2xl font-semibold uppercase tracking-wide md:text-3xl">{t.gallery}</h2>
+            <BrandGallery brandName={brand.name} images={brand.images} />
+          </section>
+        ) : null}
       </section>
     </main>
   );
