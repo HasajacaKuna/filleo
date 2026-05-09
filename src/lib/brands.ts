@@ -9,6 +9,8 @@ export type Brand = {
   tagline?: LocalizedText;
   description?: LocalizedText;
   url?: string;
+  urlLabel?: LocalizedText;
+  extraLinks?: { label: LocalizedText; url: string }[];
   images?: string[];
   body?: LocalizedText;
 };
@@ -49,6 +51,32 @@ export const brands: Brand[] = [
       it: 'Una manifattura toscana specializzata in sughi artigianali, rag\u00f9, p\u00e2t\u00e9 e conserve tradizionali.',
     },
     url: 'https://www.fabbricasughi.com/',
+    extraLinks: [
+      {
+        label: {
+          pl: 'Katalog sughi (ITA/ENG)',
+          en: 'Sughi catalog (ITA/ENG)',
+          it: 'Catalogo sughi (ITA/ENG)',
+        },
+        url: '/images/la dispansa toscania/Catalogo sughi DT ITA _ ENG pagine singole bassa_.pdf',
+      },
+      {
+        label: {
+          pl: 'Katalog PDF',
+          en: 'Catalog PDF',
+          it: 'Catalogo PDF',
+        },
+        url: '/images/la dispansa toscania/PDF.pdf',
+      },
+      {
+        label: {
+          pl: 'Prezentacja Nonna Lena',
+          en: 'Nonna Lena presentation',
+          it: 'Presentazione Nonna Lena',
+        },
+        url: '/images/la dispansa toscania/prezentacja - Nonna Lena.pdf',
+      },
+    ],
     images: ['/images/fabbrica sughi/1.jpg'],
     body: {
       pl: 'La Dispensa Toscana to w\u0142oska manufaktura z regionu Toskanii, specjalizuj\u0105ca si\u0119 w produkcji rzemie\u015blniczych sos\u00f3w, rag\u00f9, p\u00e2t\u00e9 oraz tradycyjnych przetwor\u00f3w inspirowanych autentyczn\u0105 kuchni\u0105 w\u0142osk\u0105. Zak\u0142ad produkcyjny firmy znajduje si\u0119 w Vicopisano, w prowincji Piza, miejscu, gdzie od pokole\u0144 piel\u0119gnowana jest kultura prostych, ale wyj\u0105tkowo aromatycznych potraw.\n\nProdukty marki powstaj\u0105 z najwy\u017cszej jako\u015bci, starannie wyselekcjonowanych sk\u0142adnik\u00f3w. W procesie produkcji nie stosuje si\u0119 konserwant\u00f3w ani sztucznych barwnik\u00f3w. Receptury opieraj\u0105 si\u0119 na tradycyjnych, domowych przepisach charakterystycznych dla toska\u0144skiej kuchni. Dzi\u0119ki temu sosy i przetwory zachowuj\u0105 autentyczny smak, kt\u00f3ry przywodzi na my\u015bl domowe dania przygotowywane we w\u0142oskich rodzinach.\n\nW ofercie producenta znajduj\u0105 si\u0119 mi\u0119dzy innymi klasyczne sosy pomidorowe, mi\u0119sne rag\u00f9, p\u00e2t\u00e9 oraz dania inspirowane tradycyjnymi recepturami regionu. Produkty te doskonale sprawdzaj\u0105 si\u0119 zar\u00f3wno w kuchni domowej, jak i w gastronomii, pozwalaj\u0105c w prosty spos\u00f3b przygotowa\u0107 dania o prawdziwie w\u0142oskim charakterze.\n\nW portfolio La Dispensa Toscana znajduj\u0105 si\u0119 r\u00f3wnie\u017c linie premium, kt\u00f3re reprezentuj\u0105 najwy\u017csz\u0105 jako\u015b\u0107 i rzemie\u015blnicze podej\u015bcie do produkcji \u017cywno\u015bci, oddaj\u0105c esencj\u0119 toska\u0144skiej tradycji kulinarnej.',
@@ -101,7 +129,7 @@ export const brands: Brand[] = [
   },
   {
     slug: 'morelli',
-    name: 'Morelli Tuscany - Pasta 1860',
+    name: 'Pasta od 1860.',
     logo: '/images/logos/morelli tuscany.png',
     tagline: {
       pl: 'Tradycja toska\u0144skiego makaronu z kie\u0142kami pszenicy',
@@ -113,7 +141,30 @@ export const brands: Brand[] = [
       en: 'A family-run Tuscan workshop that has been producing artisanal pasta for six generations using traditional Italian methods.',
       it: 'Una manifattura familiare toscana che da sei generazioni produce pasta artigianale secondo i metodi tradizionali italiani.',
     },
-    url: 'https://morellipasta.com/',
+    url: 'https://www.pastamorelli.it/it/ricette/',
+    urlLabel: {
+      pl: 'Oryginalne przepisy',
+      en: 'Original recipes',
+      it: 'Ricette originali',
+    },
+    extraLinks: [
+      {
+        label: {
+          pl: 'Folder restauracyjny 2026 (PL)',
+          en: 'Restaurant folder 2026 (PL)',
+          it: 'Catalogo ristorazione 2026 (PL)',
+        },
+        url: '/images/morelli tuscany/folder-restauracyjny-2026-pl.pdf',
+      },
+      {
+        label: {
+          pl: 'Makarony Morelli (PDF)',
+          en: 'Morelli pasta (PDF)',
+          it: 'Pasta Morelli (PDF)',
+        },
+        url: '/images/morelli tuscany/makarony-morelli.pdf',
+      },
+    ],
     images: ['/images/morelli tuscany/1.jpg'],
     body: {
       pl: 'Antico Pastificio Morelli 1860 to rodzinna manufaktura z Toskanii, kt\u00f3ra od sze\u015bciu pokole\u0144 produkuje rzemie\u015blniczy makaron wed\u0142ug tradycyjnych w\u0142oskich metod. Sekretem wyj\u0105tkowego smaku makaronu Morelli jest dodatek kie\u0142k\u00f3w pszenicy (germe di grano), najbardziej warto\u015bciowej cz\u0119\u015bci ziarna, bogatej w aromat i sk\u0142adniki od\u017cywcze.\n\nMakaron powstaje z w\u0142oskiej i toska\u0144skiej semoliny, jest wolno wyrabiany, formowany w matrycach z br\u0105zu i suszony w niskiej temperaturze do 50\u00b0C przez oko\u0142o 36 godzin, co pozwala zachowa\u0107 naturalny smak i w\u0142a\u015bciwo\u015bci produktu.\n\nW ofercie Morelli znajduj\u0105 si\u0119 zar\u00f3wno klasyczne w\u0142oskie kszta\u0142ty makaronu, jak i szeroka gama makaron\u00f3w specjalnych: z trufl\u0105, szafranem, cytryn\u0105, kakao, warzywami czy czarn\u0105 sepi\u0105. Producent oferuje r\u00f3wnie\u017c linie BIO, bezglutenowe oraz makarony z ro\u015blin str\u0105czkowych.',

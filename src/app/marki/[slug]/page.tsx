@@ -97,10 +97,21 @@ export default async function BrandPage({ params }: { params: Promise<RouteParam
             ) : null}
 
             {brand.url ? (
-              <div className="mt-6">
+              <div className="mt-6 flex flex-wrap gap-3">
                 <a href={brand.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red">
-                  {t.visit}
+                  {getLocalizedText(brand.urlLabel, locale) ?? t.visit}
                 </a>
+                {brand.extraLinks?.map((link) => (
+                  <a
+                    key={link.url}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center rounded-md border border-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-dark hover:bg-brand-dark hover:text-brand-light"
+                  >
+                    {getLocalizedText(link.label, locale)}
+                  </a>
+                ))}
               </div>
             ) : null}
           </div>
