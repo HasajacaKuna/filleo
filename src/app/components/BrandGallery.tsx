@@ -8,6 +8,13 @@ type BrandGalleryProps = {
   images: string[];
 };
 
+const VIDEO_EXTENSIONS = ['.mp4', '.webm', '.mov'];
+
+function isVideoAsset(path: string) {
+  const normalized = path.toLowerCase();
+  return VIDEO_EXTENSIONS.some((ext) => normalized.endsWith(ext));
+}
+
 export function BrandGallery({ brandName, images }: BrandGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
@@ -37,13 +44,19 @@ export function BrandGallery({ brandName, images }: BrandGalleryProps) {
             onClick={() => setActiveIndex(index)}
             className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition hover:scale-[1.01] hover:shadow-md"
           >
-            <Image
-              src={imagePath}
-              alt={`${brandName} ${index + 1}`}
-              fill
-              sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-              className="object-cover"
-            />
+            {isVideoAsset(imagePath) ? (
+              <video className="h-full w-full object-cover" muted playsInline preload="metadata">
+                <source src={imagePath} type="video/mp4" />
+              </video>
+            ) : (
+              <Image
+                src={imagePath}
+                alt={`${brandName} ${index + 1}`}
+                fill
+                sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                className="object-cover"
+              />
+            )}
           </button>
         ))}
       </div>
@@ -54,7 +67,7 @@ export function BrandGallery({ brandName, images }: BrandGalleryProps) {
           onClick={() => setActiveIndex(null)}
           role="dialog"
           aria-modal="true"
-          aria-label={`${brandName} image preview`}
+          aria-label={`${brandName} media preview`}
         >
           <button
             type="button"
@@ -68,14 +81,20 @@ export function BrandGallery({ brandName, images }: BrandGalleryProps) {
             className="relative h-[85vh] w-full max-w-5xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <Image
-              src={images[activeIndex]}
-              alt={`${brandName} ${activeIndex + 1}`}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              priority
-            />
+            {isVideoAsset(images[activeIndex]) ? (
+              <video className="h-full w-full object-contain" controls playsInline autoPlay>
+                <source src={images[activeIndex]} type="video/mp4" />
+              </video>
+            ) : (
+              <Image
+                src={images[activeIndex]}
+                alt={`${brandName} ${activeIndex + 1}`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            )}
           </div>
         </div>
       ) : null}

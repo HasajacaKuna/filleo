@@ -35,6 +35,7 @@ export const brands: Brand[] = [
       en: 'Food Loop builds its image around a simple, distinctive visual identity and its Italian origin. Public information about the brand is limited, so this summary is based mainly on the brand name and visual presentation.',
       it: 'Food Loop costruisce la propria immagine attorno a un\u2019identit\u00e0 visiva semplice e riconoscibile e alle sue origini italiane. Le informazioni pubbliche sul marchio sono limitate, quindi questa sintesi si basa soprattutto sul nome e sulla presentazione visiva.',
     },
+    images: ['/images/foodloop/WhatsApp Video 2026-05-09 at 14.51.46.mp4'],
   },
   {
     slug: 'la-dispensa-toscana',
@@ -191,6 +192,7 @@ export const brands: Brand[] = [
     },
     url: 'https://900wine.com/',
     images: [
+      '/images/900wine/WhatsApp Video 2026-05-09 at 14.53.51.mp4',
       '/images/900wine/1.jpg',
       '/images/900wine/2.jpg',
       '/images/900wine/3.jpg',
