@@ -141,13 +141,21 @@ export const brands: Brand[] = [
       en: 'A family-run Tuscan workshop that has been producing artisanal pasta for six generations using traditional Italian methods.',
       it: 'Una manifattura familiare toscana che da sei generazioni produce pasta artigianale secondo i metodi tradizionali italiani.',
     },
-    url: 'https://www.pastamorelli.it/it/ricette/',
+    url: 'https://pastamorelli.com/',
     urlLabel: {
-      pl: 'Oryginalne przepisy',
-      en: 'Original recipes',
-      it: 'Ricette originali',
+      pl: 'Strona główna',
+      en: 'Homepage',
+      it: 'Sito ufficiale',
     },
     extraLinks: [
+      {
+        label: {
+          pl: 'Oryginalne przepisy',
+          en: 'Original recipes',
+          it: 'Ricette originali',
+        },
+        url: 'https://www.pastamorelli.it/it/ricette/',
+      },
       {
         label: {
           pl: 'Folder restauracyjny 2026 (PL)',
