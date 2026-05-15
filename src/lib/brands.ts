@@ -192,12 +192,10 @@ export const brands: Brand[] = [
     },
     url: 'https://900wine.com/',
     images: [
-      '/images/900wine/WhatsApp Video 2026-05-09 at 14.53.51.mp4',
-      '/images/900wine/1.jpg',
-      '/images/900wine/2.jpg',
-      '/images/900wine/3.jpg',
-      '/images/900wine/4.jpg',
-      '/images/900wine/5.jpg',
+      '/images/900wine/Projekt bez nazwy (1).jpg',
+      '/images/900wine/900 new.jpeg',
+      '/images/900wine/DSC04842.JPG',
+      '/images/900wine/Filleo_900_Luminous_slide.jpg',
     ],
     body: {
       pl: 'Marka 900wine czerpie swoj\u0105 nazw\u0119 z liczby 900, kt\u00f3ra symbolicznie nawi\u0105zuje do prze\u0142omowych wydarze\u0144, idei i moment\u00f3w XX wieku, epoki niezwyk\u0142ych zmian, innowacji i rozwoju. To w\u0142a\u015bnie w tym czasie powsta\u0142y fundamenty wsp\u00f3\u0142czesnego \u015bwiata, a tak\u017ce zacz\u0119\u0142a si\u0119 historia win musuj\u0105cych w regionie Veneto.\n\nDo najwa\u017cniejszych wydarze\u0144, kt\u00f3re inspiruj\u0105 filozofi\u0119 marki, nale\u017c\u0105 mi\u0119dzy innymi narodziny produkcji win musuj\u0105cych w Veneto, powstanie pierwszej winiarni Prosecco Valdobbiadene w 1919 roku, zako\u0144czenie II wojny \u015bwiatowej, l\u0105dowanie cz\u0142owieka na Ksi\u0119\u017cycu czy dynamiczny rozw\u00f3j technologii i pocz\u0105tek ery Internetu.\n\nLiczba 900 symbolizuje harmonijne po\u0142\u0105czenie tradycji i nowoczesno\u015bci. Z jednej strony odnosi si\u0119 do historycznych korzeni produkcji win musuj\u0105cych, z drugiej do nowoczesnych technologii kontroli jako\u015bci, innowacyjnego podej\u015bcia do produkcji oraz charakterystycznego, wsp\u00f3\u0142czesnego designu.\n\nDzi\u0119ki temu 900wine tworzy wina musuj\u0105ce, kt\u00f3re \u0142\u0105cz\u0105 w\u0142oskie dziedzictwo winiarskie z nowoczesnym stylem i energi\u0105 wsp\u00f3\u0142czesno\u015bci.',

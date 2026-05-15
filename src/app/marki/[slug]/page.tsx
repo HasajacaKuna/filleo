@@ -79,8 +79,18 @@ export default async function BrandPage({ params }: { params: Promise<RouteParam
       <section className="container pb-16 md:pb-24">
         <div className="grid gap-8 md:grid-cols-12">
           <div className="md:col-span-4">
-            <div className="relative aspect-square w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5">
-              <Image src={brand.logo} alt={brand.name} fill priority sizes="(min-width: 768px) 320px, 60vw" className="object-contain p-6" />
+            <div
+              className={`relative w-full max-w-xs overflow-hidden rounded-2xl bg-white shadow ring-1 ring-black/5 ${
+                brand.slug === 'novecento-900' ? 'aspect-[9/16]' : 'aspect-square'
+              }`}
+            >
+              {brand.slug === 'novecento-900' ? (
+                <video className="h-full w-full object-cover" controls playsInline preload="metadata">
+                  <source src="/images/900wine/WhatsApp Video 2026-05-09 at 14.53.51.mp4" type="video/mp4" />
+                </video>
+              ) : (
+                <Image src={brand.logo} alt={brand.name} fill priority sizes="(min-width: 768px) 320px, 60vw" className="object-contain p-6" />
+              )}
             </div>
           </div>
 

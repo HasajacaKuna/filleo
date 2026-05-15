@@ -36,13 +36,13 @@ export function BrandGallery({ brandName, images }: BrandGalleryProps) {
 
   return (
     <>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-5 sm:grid-cols-2">
         {images.map((imagePath, index) => (
           <button
             key={imagePath}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition hover:scale-[1.01] hover:shadow-md"
+            className="group relative aspect-[16/10] overflow-hidden rounded-2xl border border-black/5 bg-white shadow-sm transition hover:scale-[1.01] hover:shadow-md"
           >
             {isVideoAsset(imagePath) ? (
               <>
@@ -62,6 +62,9 @@ export function BrandGallery({ brandName, images }: BrandGalleryProps) {
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </span>
+                </span>
+                <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 pb-3 pt-10 text-left text-sm font-medium text-white">
+                  Film {brandName}
                 </span>
               </>
             ) : (
