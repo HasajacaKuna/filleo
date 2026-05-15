@@ -194,7 +194,7 @@ export const brands: Brand[] = [
     images: [
       '/images/900wine/Projekt bez nazwy (1).jpg',
       '/images/900wine/900 new.jpeg',
-      '/images/900wine/DSC04842.JPG',
+      '/images/900wine/dsc04842.jpg',
       '/images/900wine/Filleo_900_Luminous_slide.jpg',
     ],
     body: {
