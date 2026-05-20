@@ -7,17 +7,14 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
   pl: {
-    title: 'Nasze marki',
     introTitle: 'Poznaj producentów, których reprezentujemy',
     introText: 'Współpracujemy z wyselekcjonowanymi włoskimi producentami i rodzinnymi manufakturami, które łączą tradycję, jakość oraz autentyczny włoski charakter.',
   },
   en: {
-    title: 'Our brands',
     introTitle: 'Meet the producers we represent',
     introText: 'We work with selected Italian producers and family-run manufacturers who combine tradition, quality, and authentic Italian character.',
   },
   it: {
-    title: 'I nostri marchi',
     introTitle: 'Scopri i produttori che rappresentiamo',
     introText: 'Collaboriamo con produttori italiani selezionati e manifatture familiari che uniscono tradizione, qualità e autentico carattere italiano.',
   },
@@ -38,10 +35,9 @@ export default function BrandsPage() {
 
         <div className="container relative z-20 flex h-[42vh] items-center justify-center text-center md:h-[52vh]">
           <figure className="max-w-3xl px-4 text-white">
-            <figcaption className="mt-24 flex items-center justify-center gap-3 opacity-90 md:mt-40">
-              <span className="inline-block h-px w-8 bg-white/60" />
-              <span className="text-sm font-semibold uppercase tracking-wide">{t.title}</span>
-              <span className="inline-block h-px w-8 bg-white/60" />
+            <figcaption className="mt-20 px-3 text-center text-white md:mt-40">
+              <p className="text-sm font-semibold uppercase tracking-wide md:text-base">{t.introTitle}</p>
+              <p className="mt-2 text-xs font-normal leading-relaxed text-white/90 md:text-sm">{t.introText}</p>
             </figcaption>
           </figure>
         </div>
@@ -49,10 +45,6 @@ export default function BrandsPage() {
 
       <section className="relative">
         <div className="container relative z-30 mt-4 md:-mt-24 lg:-mt-36">
-          <header className="mx-auto mb-5 max-w-4xl text-center md:mb-8">
-            <h1 className="text-2xl font-extrabold tracking-tight md:text-3xl">{t.introTitle}</h1>
-            <p className="mt-3 text-sm font-normal leading-relaxed text-brand-dark/75 md:text-base">{t.introText}</p>
-          </header>
           <div className="rounded-2xl bg-white p-4 shadow-xl ring-1 ring-black/5 md:p-6 lg:p-8">
             <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5 md:gap-3 lg:grid-cols-6">
               {brands.slice(0, 20).map((b) => (
