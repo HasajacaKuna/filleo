@@ -36,7 +36,11 @@ export default function BrandsPage() {
         <div className="container relative z-20 flex h-[42vh] items-center justify-center text-center md:h-[52vh]">
           <figure className="max-w-3xl px-4 text-white">
             <figcaption className="mt-20 px-3 text-center text-white md:mt-40">
-              <p className="text-sm font-semibold uppercase tracking-wide md:text-base">{t.introTitle}</p>
+              <div className="flex items-center justify-center gap-3">
+                <span className="inline-block h-px w-8 bg-white/60" />
+                <p className="text-sm font-semibold uppercase tracking-wide md:text-base">{t.introTitle}</p>
+                <span className="inline-block h-px w-8 bg-white/60" />
+              </div>
               <p className="mt-2 text-xs font-normal leading-relaxed text-white/90 md:text-sm">{t.introText}</p>
             </figcaption>
           </figure>
