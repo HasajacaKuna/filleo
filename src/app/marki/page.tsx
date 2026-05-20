@@ -7,15 +7,12 @@ import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
   pl: {
-    quote: 'Oferując ponad 200 marek i sprzedaż w niemal 180 krajach, mamy coś na każdy gust i okazję.',
     title: 'Nasze marki',
   },
   en: {
-    quote: 'With over 200 brands and distribution in nearly 180 countries, we have something for every taste and occasion.',
     title: 'Our brands',
   },
   it: {
-    quote: 'Con oltre 200 marchi e distribuzione in quasi 180 paesi, offriamo qualcosa per ogni gusto e occasione.',
     title: 'I nostri marchi',
   },
 } as const;
@@ -28,15 +25,14 @@ export default function BrandsPage() {
     <main className="bg-brand-light text-brand-dark">
       <section className="relative">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/banner.jpg" alt="Brands banner" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/images/Filleo%20strona.png" alt="Brands banner" fill priority sizes="100vw" className="object-cover" />
         </div>
 
         <div className="pointer-events-none absolute inset-0 z-10 bg-black/35" />
 
         <div className="container relative z-20 flex h-[42vh] items-center justify-center text-center md:h-[52vh]">
           <figure className="max-w-3xl px-4 text-white">
-            <blockquote className="text-lg italic leading-relaxed tracking-wide text-white/95 md:text-2xl">{t.quote}</blockquote>
-            <figcaption className="mt-24 flex items-center justify-center gap-3 opacity-90">
+            <figcaption className="mt-40 flex items-center justify-center gap-3 opacity-90">
               <span className="inline-block h-px w-8 bg-white/60" />
               <span className="text-sm font-semibold uppercase tracking-wide">{t.title}</span>
               <span className="inline-block h-px w-8 bg-white/60" />

@@ -22,7 +22,6 @@ type Errors = Partial<Record<keyof FormState | 'birth' | 'submit', string>>;
 
 const COPY = {
   pl: {
-    hero: 'Zostań\nprzyjacielem\nFilleo',
     sub: 'Subskrybuj',
     text: 'Dołącz do grona przyjaciół Filleo i otrzymuj inspiracje oraz oferty specjalne.',
     sentTitle: 'Zostań przyjacielem Filleo',
@@ -55,7 +54,6 @@ const COPY = {
     eSend: 'Nie udało się wysłać formularza. Spróbuj ponownie.',
   },
   en: {
-    hero: 'Become\na friend\nof Filleo',
     sub: 'Subscribe',
     text: 'Join the Filleo community and receive inspirations and special offers.',
     sentTitle: 'Become a friend of Filleo',
@@ -88,7 +86,6 @@ const COPY = {
     eSend: 'Could not send the form. Please try again.',
   },
   it: {
-    hero: 'Diventa\namico\ndi Filleo',
     sub: 'Iscriviti',
     text: 'Entra nella community Filleo e ricevi ispirazioni e offerte speciali.',
     sentTitle: 'Diventa amico di Filleo',
@@ -233,20 +230,79 @@ export default function SubscribePage() {
 
   return (
     <main className="bg-brand-light text-brand-dark">
-      <section className="container py-16 md:py-24">
-        <div className="grid items-center gap-8 md:grid-cols-12 md:gap-10">
+      <section className="container py-4 md:py-6">
+        <div className="grid items-start gap-6 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-7">
-            <h1 className="mt-4 text-5xl font-extrabold uppercase leading-[0.95] md:text-7xl">
-              {t.hero.split('\n').map((line, i) => (
-                <span key={`${line}-${i}`}>
-                  {line}
-                  <br className="hidden md:block" />
-                </span>
-              ))}
-            </h1>
-
-            <h2 className="mt-8 text-xl font-semibold uppercase tracking-wide text-brand-red">{t.sub}</h2>
+            <h2 className="mt-2 text-xl font-semibold uppercase tracking-wide text-brand-red">{t.sub}</h2>
             <p className="mt-4 max-w-2xl text-brand-dark/70">{t.text}</p>
+
+            <form onSubmit={onSubmit} className="mt-8 max-w-3xl space-y-6">
+              <div>
+                <label className={labelBase}>{t.firstName}</label>
+                <input type="text" value={form.firstName} onChange={onFieldChange('firstName')} className={inputBase} placeholder={t.pFirst} aria-invalid={!!errors.firstName} />
+                {errors.firstName && <p className="mt-1 text-xs text-red-600">{errors.firstName}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.lastName}</label>
+                <input type="text" value={form.lastName} onChange={onFieldChange('lastName')} className={inputBase} placeholder={t.pLast} aria-invalid={!!errors.lastName} />
+                {errors.lastName && <p className="mt-1 text-xs text-red-600">{errors.lastName}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.email}</label>
+                <input type="email" value={form.email} onChange={onFieldChange('email')} className={inputBase} placeholder={t.pEmail} aria-invalid={!!errors.email} />
+                {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.birth}</label>
+                <div className="grid grid-cols-3 gap-3">
+                  <input inputMode="numeric" maxLength={2} value={form.day} onChange={onFieldChange('day')} className={inputBase} placeholder="DD" aria-invalid={!!errors.birth} />
+                  <input inputMode="numeric" maxLength={2} value={form.month} onChange={onFieldChange('month')} className={inputBase} placeholder="MM" aria-invalid={!!errors.birth} />
+                  <input inputMode="numeric" maxLength={4} value={form.year} onChange={onFieldChange('year')} className={inputBase} placeholder="YYYY" aria-invalid={!!errors.birth} />
+                </div>
+                {errors.birth && <p className="mt-1 text-xs text-red-600">{errors.birth}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.zip}</label>
+                <input type="text" value={form.zip} onChange={onFieldChange('zip')} className={inputBase} placeholder={t.pZip} aria-invalid={!!errors.zip} />
+                {errors.zip && <p className="mt-1 text-xs text-red-600">{errors.zip}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.country}</label>
+                <select value={form.country} onChange={onFieldChange('country')} className={`${inputBase} appearance-none`} aria-invalid={!!errors.country}>
+                  <option className="bg-white text-brand-dark" value="Poland">Poland</option>
+                  <option className="bg-white text-brand-dark" value="Italy">Italy</option>
+                  <option className="bg-white text-brand-dark" value="Germany">Germany</option>
+                  <option className="bg-white text-brand-dark" value="Other">Other</option>
+                </select>
+                {errors.country && <p className="mt-1 text-xs text-red-600">{errors.country}</p>}
+              </div>
+
+              <div>
+                <label className={labelBase}>{t.region}</label>
+                <input type="text" value={form.region} onChange={onFieldChange('region')} className={inputBase} placeholder={t.pRegion} />
+              </div>
+
+              <div className="space-y-2">
+                <label className="flex items-start gap-3 text-sm leading-6">
+                  <input type="checkbox" checked={form.consent} onChange={onConsentChange} className="mt-1 h-4 w-4 rounded border-brand-dark/30 accent-brand-red" />
+                  <span className="text-brand-dark/80">
+                    {t.consent}
+                    <Link href="/polityka-prywatnosci" className="text-brand-red underline">{t.privacy}</Link>.
+                  </span>
+                </label>
+                {errors.consent && <p className="text-xs text-red-600">{errors.consent}</p>}
+              </div>
+
+              <button type="submit" disabled={sending} className="mt-2 inline-flex items-center rounded-full bg-brand-dark px-8 py-3 text-sm font-bold uppercase tracking-wide text-brand-light transition hover:bg-brand-red focus:outline-none focus:ring-2 focus:ring-brand-beige disabled:opacity-50">
+                {sending ? t.sending : t.send}
+              </button>
+              {errors.submit && <p className="text-xs text-red-600">{errors.submit}</p>}
+            </form>
           </div>
 
           <div className="md:col-span-5">
@@ -255,74 +311,6 @@ export default function SubscribePage() {
             </div>
           </div>
         </div>
-
-        <form onSubmit={onSubmit} className="mt-10 max-w-3xl space-y-6">
-          <div>
-            <label className={labelBase}>{t.firstName}</label>
-            <input type="text" value={form.firstName} onChange={onFieldChange('firstName')} className={inputBase} placeholder={t.pFirst} aria-invalid={!!errors.firstName} />
-            {errors.firstName && <p className="mt-1 text-xs text-red-600">{errors.firstName}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.lastName}</label>
-            <input type="text" value={form.lastName} onChange={onFieldChange('lastName')} className={inputBase} placeholder={t.pLast} aria-invalid={!!errors.lastName} />
-            {errors.lastName && <p className="mt-1 text-xs text-red-600">{errors.lastName}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.email}</label>
-            <input type="email" value={form.email} onChange={onFieldChange('email')} className={inputBase} placeholder={t.pEmail} aria-invalid={!!errors.email} />
-            {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.birth}</label>
-            <div className="grid grid-cols-3 gap-3">
-              <input inputMode="numeric" maxLength={2} value={form.day} onChange={onFieldChange('day')} className={inputBase} placeholder="DD" aria-invalid={!!errors.birth} />
-              <input inputMode="numeric" maxLength={2} value={form.month} onChange={onFieldChange('month')} className={inputBase} placeholder="MM" aria-invalid={!!errors.birth} />
-              <input inputMode="numeric" maxLength={4} value={form.year} onChange={onFieldChange('year')} className={inputBase} placeholder="YYYY" aria-invalid={!!errors.birth} />
-            </div>
-            {errors.birth && <p className="mt-1 text-xs text-red-600">{errors.birth}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.zip}</label>
-            <input type="text" value={form.zip} onChange={onFieldChange('zip')} className={inputBase} placeholder={t.pZip} aria-invalid={!!errors.zip} />
-            {errors.zip && <p className="mt-1 text-xs text-red-600">{errors.zip}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.country}</label>
-            <select value={form.country} onChange={onFieldChange('country')} className={`${inputBase} appearance-none`} aria-invalid={!!errors.country}>
-              <option className="bg-white text-brand-dark" value="Poland">Poland</option>
-              <option className="bg-white text-brand-dark" value="Italy">Italy</option>
-              <option className="bg-white text-brand-dark" value="Germany">Germany</option>
-              <option className="bg-white text-brand-dark" value="Other">Other</option>
-            </select>
-            {errors.country && <p className="mt-1 text-xs text-red-600">{errors.country}</p>}
-          </div>
-
-          <div>
-            <label className={labelBase}>{t.region}</label>
-            <input type="text" value={form.region} onChange={onFieldChange('region')} className={inputBase} placeholder={t.pRegion} />
-          </div>
-
-          <div className="space-y-2">
-            <label className="flex items-start gap-3 text-sm leading-6">
-              <input type="checkbox" checked={form.consent} onChange={onConsentChange} className="mt-1 h-4 w-4 rounded border-brand-dark/30 accent-brand-red" />
-              <span className="text-brand-dark/80">
-                {t.consent}
-                <Link href="/polityka-prywatnosci" className="text-brand-red underline">{t.privacy}</Link>.
-              </span>
-            </label>
-            {errors.consent && <p className="text-xs text-red-600">{errors.consent}</p>}
-          </div>
-
-          <button type="submit" disabled={sending} className="mt-2 inline-flex items-center rounded-full bg-brand-dark px-8 py-3 text-sm font-bold uppercase tracking-wide text-brand-light transition hover:bg-brand-red focus:outline-none focus:ring-2 focus:ring-brand-beige disabled:opacity-50">
-            {sending ? t.sending : t.send}
-          </button>
-          {errors.submit && <p className="text-xs text-red-600">{errors.submit}</p>}
-        </form>
       </section>
     </main>
   );

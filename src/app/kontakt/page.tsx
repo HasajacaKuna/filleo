@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Building2, User2, ArrowRight, MessageCircle, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Building2, User2, MessageCircle, Instagram } from 'lucide-react';
 import { useLanguage } from '../components/LanguageProvider';
 
 const COPY = {
@@ -15,7 +15,6 @@ const COPY = {
     writeMarketing: 'Napisz do marketingu',
     whatsapp: 'Napisz na WhatsApp',
     instagram: 'Napisz na Instagramie',
-    friend: 'Zostań przyjacielem Filleo',
     response: 'Odpowiadamy zazwyczaj tego samego dnia roboczego.',
   },
   en: {
@@ -28,7 +27,6 @@ const COPY = {
     writeMarketing: 'Email marketing',
     whatsapp: 'Write on WhatsApp',
     instagram: 'Write on Instagram',
-    friend: 'Become a Filleo friend',
     response: 'We usually reply on the same business day.',
   },
   it: {
@@ -41,7 +39,6 @@ const COPY = {
     writeMarketing: 'Scrivi al marketing',
     whatsapp: 'Scrivi su WhatsApp',
     instagram: 'Scrivi su Instagram',
-    friend: 'Diventa amico di Filleo',
     response: 'Di solito rispondiamo entro la stessa giornata lavorativa.',
   },
 } as const;
@@ -95,12 +92,11 @@ export default function ContactPage() {
               <p className="mt-2 text-sm text-brand-dark/70">{t.quickText}</p>
 
               <div className="mt-6 grid gap-3">
-                <a href="tel:+48691100235" className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-dark px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-red"><Phone className="h-4 w-4" />{t.call}</a>
+                <a href="tel:+48691100235" className="inline-flex items-center justify-center gap-2 rounded-md bg-brand-red px-5 py-3 text-sm font-bold uppercase tracking-wide text-brand-light hover:bg-brand-dark"><Phone className="h-4 w-4" />{t.call}</a>
                 <a href="mailto:sales@filleo.pl" className="inline-flex items-center justify-center gap-2 rounded-md border border-brand-dark/15 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-black/5"><Mail className="h-4 w-4" />{t.writeSales}</a>
                 <a href="mailto:marketing@filleo.pl" className="inline-flex items-center justify-center gap-2 rounded-md border border-brand-dark/15 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-black/5"><Mail className="h-4 w-4" />{t.writeMarketing}</a>
                 <a href="https://wa.me/48691100235" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md border border-emerald-500/40 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-emerald-50"><MessageCircle className="h-4 w-4" />{t.whatsapp}</a>
                 <a href="https://ig.me/m/USERNAME" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-md border border-pink-500/40 bg-white px-5 py-3 text-sm font-semibold uppercase tracking-wide hover:bg-pink-50"><Instagram className="h-4 w-4" />{t.instagram}</a>
-                <Link href="/subskrybuj" className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-brand-light px-5 py-3 text-sm font-semibold uppercase tracking-wide ring-1 ring-black/10 hover:bg-black/5">{t.friend} <ArrowRight className="h-4 w-4" /></Link>
               </div>
 
               <div className="mt-auto pt-4 text-xs text-brand-dark/50">{t.response}</div>

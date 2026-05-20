@@ -70,7 +70,7 @@ export default function HomePage() {
     <main className="bg-brand-light text-brand-dark">
       <section className="relative">
         <div className="absolute inset-0 z-0">
-          <Image src="/images/banner.jpg" alt="Filleo banner" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/images/Filleo%20strona.png" alt="Filleo banner" fill priority sizes="100vw" className="object-cover" />
         </div>
 
         <div className="absolute inset-0 z-10 pointer-events-none">

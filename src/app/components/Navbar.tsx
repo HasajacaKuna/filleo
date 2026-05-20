@@ -7,11 +7,10 @@ import { ShoppingCart, Linkedin, Instagram } from 'lucide-react';
 import { useLanguage, type Language } from './LanguageProvider';
 
 const NAV_ITEMS = [
+  { href: '/o-nas', key: 'about' },
   { href: '/marki', key: 'brands' },
   { href: '/inspiracje', key: 'inspirations' },
   { href: '/subskrybuj', key: 'subscribe' },
-  { href: '/kariera', key: 'career' },
-  { href: '/o-nas', key: 'about' },
   { href: '/kontakt', key: 'contact' },
 ] as const;
 
@@ -23,10 +22,9 @@ const LANGUAGE_OPTIONS: Array<{ code: Language; flagCode: 'pl' | 'gb' | 'it' }> 
 
 const TRANSLATIONS = {
   pl: {
-    brands: 'Nasze marki',
-    inspirations: 'Nasze inspiracje',
+    brands: 'Nasi producenci',
+    inspirations: 'Zestawy prezentowe',
     subscribe: 'Subskrybuj',
-    career: 'Kariera',
     about: 'O nas',
     contact: 'Kontakt',
     shopOnline: 'Sklep online',
@@ -34,10 +32,9 @@ const TRANSLATIONS = {
     language: 'Język',
   },
   en: {
-    brands: 'Our brands',
-    inspirations: 'Our inspirations',
+    brands: 'Our producers',
+    inspirations: 'Gift sets',
     subscribe: 'Subscribe',
-    career: 'Career',
     about: 'About us',
     contact: 'Contact',
     shopOnline: 'Online shop',
@@ -45,10 +42,9 @@ const TRANSLATIONS = {
     language: 'Language',
   },
   it: {
-    brands: 'I nostri marchi',
-    inspirations: 'Le nostre ispirazioni',
+    brands: 'I nostri produttori',
+    inspirations: 'Set regalo',
     subscribe: 'Iscriviti',
-    career: 'Carriera',
     about: 'Chi siamo',
     contact: 'Contatti',
     shopOnline: 'Negozio online',
