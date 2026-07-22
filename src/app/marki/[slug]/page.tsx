@@ -101,7 +101,7 @@ export default async function BrandPage({ params }: { params: Promise<RouteParam
             {description ? <p className="mt-5 leading-relaxed text-brand-dark/90">{description}</p> : null}
 
             {body ? (
-              <div className="prose prose-neutral mt-6 max-w-none">
+              <div className="mt-6 max-w-none [&_p]:mb-6 [&_p]:leading-relaxed [&_p:last-child]:mb-0">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
               </div>
             ) : null}

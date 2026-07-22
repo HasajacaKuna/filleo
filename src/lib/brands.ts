@@ -284,4 +284,42 @@ export const brands: Brand[] = [
       it: 'Fattoria Le Poggette \u00e8 una cantina situata in Umbria, tra Montecastrilli e Terni, circondata da colline che formano un anfiteatro naturale. Questa posizione unica garantisce un microclima favorevole alla coltivazione della vite, con terreni argillosi, sabbiosi e calcarei.\n\nNegli anni Sessanta Giorgio Lanzetta, originario dell\u2019Abruzzo, acquist\u00f2 questi terreni e vi piant\u00f2 vitigni Montepulciano, che si adattarono perfettamente al territorio. Negli anni successivi furono introdotte anche le variet\u00e0 Sangiovese e Canaiolo, dando vita a vini rossi eleganti e di alta qualit\u00e0.\n\nOggi la cantina unisce il rispetto per la tradizione a un approccio moderno alla vinificazione, concentrandosi sull\u2019espressione del pieno potenziale del terroir umbro. I vini Fattoria Le Poggette si distinguono per gli intensi aromi di frutta matura, la buona struttura e i tannini armoniosi, qualit\u00e0 che li rendono ideali per la gastronomia.\n\nIl produttore propone vini nelle denominazioni Umbria IGT e DOC Amelia, rivolgendosi al mercato premium, alla ristorazione e ai clienti che cercano nel calice un carattere autentico e profondamente territoriale.',
     },
   },
+  {
+    slug: 'antica-sicilia',
+    name: 'Antica Sicilia',
+    logo: '/images/anticasicilia/logo.png',
+    tagline: {
+      pl: 'Autentyczny smak Sycylii',
+      en: 'The authentic taste of Sicily',
+      it: 'L’autentico gusto della Sicilia',
+    },
+    url: 'https://www.anticasicilia.it/',
+    extraLinks: [
+      {
+        label: {
+          pl: 'Katalog Antica Sicilia (PDF)',
+          en: 'Antica Sicilia catalogue (PDF)',
+          it: 'Catalogo Antica Sicilia (PDF)',
+        },
+        url: '/images/anticasicilia/CATALOGO Antica Sicilia_compressed.pdf',
+      },
+      {
+        label: {
+          pl: 'Katalog Gift Gourmet (PDF)',
+          en: 'Gift Gourmet catalogue (PDF)',
+          it: 'Catalogo Gift Gourmet (PDF)',
+        },
+        url: '/images/anticasicilia/CATALOGO GIFT GOURMET_compressed.pdf',
+      },
+    ],
+    images: [
+      '/images/anticasicilia/ZDJ Antica Sicilia.png',
+      '/images/anticasicilia/Filleo strona (1).png',
+    ],
+    body: {
+      pl: '**ANTICA SICILIA - AUTENTYCZNY SMAK SYCYLII**\n\nAntica Sicilia to sycylijski producent rzemieślniczych specjałów, który zamyka w swoich produktach intensywne smaki, aromaty i kolory wyspy. Marka powstała z pasji do lokalnej kuchni oraz przekonania, że wyjątkowy produkt zaczyna się od starannie wybranych składników.\n\nPodstawą jakości Antica Sicilia są wyselekcjonowane surowce, tradycyjne receptury i niezwykła dbałość o każdy etap przygotowania. Rzemieślniczy charakter produkcji łączy się tutaj z nowoczesnym zapleczem technologicznym, pozwalającym zachować powtarzalną jakość oraz bezpieczeństwo produktów bez utraty ich autentycznego, domowego charakteru.\n\nW ofercie producenta znajdują się m.in. warzywa i antipasti w oliwie, pesto, kremy warzywne, sosy, przyprawy, aromatyzowane oliwy i sole oraz słodkie przetwory. Receptury podkreślają naturalny smak składników i oddają charakter kuchni sycylijskiej.\n\nWśród specjalności wyróżniają się caponata, pesto pistacjowe, suszone pomidory, oliwki i karczochy - idealne zarówno do codziennego gotowania, jak i eleganckich przekąsek.\n\nAntica Sicilia oferuje ponad 200 produktów, produkowanych w Giarre u podnóża Etny i dostępnych w delikatesach oraz sklepach premium w Europie i na świecie.\n\n*Antica Sicilia to propozycja dla osób, które poszukują nie tylko oryginalnych włoskich produktów, lecz przede wszystkim prawdziwego smaku Sycylii - wyrazistego, naturalnego i pełnego charakteru.*',
+      en: 'Antica Sicilia is a Sicilian producer of artisanal specialties that captures the island’s intense flavors, aromas, and colors in every product. The brand was born from a passion for local cuisine and the belief that an exceptional product begins with carefully selected ingredients.\n\nThe foundation of Antica Sicilia’s quality is its selected raw materials, traditional recipes, and extraordinary attention to every stage of preparation. Its artisanal approach is paired with modern technology, ensuring consistent quality and product safety without losing an authentic, homemade character.\n\nThe range includes vegetables and antipasti in olive oil, pestos, vegetable creams, sauces, spices, flavored oils and salts, as well as sweet preserves. The recipes highlight the natural taste of the ingredients and reflect the character of Sicilian cuisine.\n\nSpecialties include caponata, pistachio pesto, sun-dried tomatoes, olives, and artichokes — perfect for everyday cooking as well as elegant appetizers. Antica Sicilia offers more than 200 products, made in Giarre at the foot of Mount Etna and available in delicatessens and premium stores across Europe and around the world.\n\n*Antica Sicilia is for those seeking not only original Italian products, but above all the true taste of Sicily: expressive, natural, and full of character.*',
+      it: 'Antica Sicilia è un produttore siciliano di specialità artigianali che racchiude nei suoi prodotti i sapori, gli aromi e i colori intensi dell’isola. Il marchio nasce dalla passione per la cucina locale e dalla convinzione che un prodotto eccezionale inizi da ingredienti scelti con cura.\n\nAlla base della qualità di Antica Sicilia vi sono materie prime selezionate, ricette tradizionali e un’attenzione straordinaria a ogni fase della preparazione. Il carattere artigianale della produzione si unisce a moderne tecnologie, che consentono di garantire qualità costante e sicurezza senza perdere l’autentico carattere domestico.\n\nL’offerta comprende verdure e antipasti sott’olio, pesti, creme vegetali, salse, spezie, oli e sali aromatizzati, oltre a conserve dolci. Le ricette esaltano il gusto naturale degli ingredienti e raccontano il carattere della cucina siciliana.\n\nTra le specialità spiccano la caponata, il pesto di pistacchio, i pomodori secchi, le olive e i carciofi — perfetti sia per la cucina di tutti i giorni sia per antipasti eleganti. Antica Sicilia offre oltre 200 prodotti, realizzati a Giarre ai piedi dell’Etna e disponibili in gastronomie e negozi premium in Europa e nel mondo.\n\n*Antica Sicilia è la proposta per chi cerca non solo prodotti italiani originali, ma soprattutto il vero gusto della Sicilia: intenso, naturale e ricco di carattere.*',
+    },
+  },
 ];
